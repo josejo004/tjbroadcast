@@ -836,11 +836,40 @@
     font-size:.8rem;
   }
 
-  .about-circle{
+  .about-circle,
+.about-glow{
+    width:220px;
+    height:220px;
+}
+}
+@media (max-width:768px){
+
+  .about-circle,
+  .about-glow{
     width:180px;
     height:180px;
   }
-}
+
+  .about-circle-inner{
+    padding:15px;
+    text-align:center;
+  }
+
+  .about-circle-inner .big-icon{
+    font-size:2rem;
+  }
+
+  .about-circle-inner .label{
+    font-size:0.75rem;
+    line-height:1.2;
+  }
+
+  .about-circle-inner .sublabel{
+    font-size:0.55rem;
+    letter-spacing:0.08em;
+    line-height:1.3;
+  }
+}	
 </style>
 </head>
 <body>
@@ -1250,7 +1279,7 @@ loading="lazy">
 
 
       <!-- IMAGE -->
-     <div class="material-card">
+      <div class="material-card">
         <img src="image/இரட்சிக்கப்பட என்ன செய்ய வேண்டும்.jpg"
              alt="இரட்சிக்கப்பட என்ன செய்ய வேண்டும்">
 
