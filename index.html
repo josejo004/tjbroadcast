@@ -585,6 +585,38 @@
   color:#ccc;
   margin-bottom:20px;
 }
+	.popup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  z-index:9999;
+  justify-content:center;
+  align-items:center;
+}
+
+.popup-content{
+  background:#111620;
+  border:1px solid #D4A843;
+  border-radius:15px;
+  padding:30px;
+  max-width:400px;
+  text-align:center;
+  color:white;
+  box-shadow:0 0 30px rgba(212,168,67,.3);
+}
+
+.popup-content h3{
+  color:#D4A843;
+  margin-bottom:15px;
+}
+
+.popup-content span{
+  float:right;
+  cursor:pointer;
+  font-size:24px;
+}
+
 	
   /* ─── FOOTER ─── */
   footer {
@@ -869,15 +901,31 @@
     letter-spacing:0.08em;
     line-height:1.3;
   }
-}	
+	}	
 </style>
 </head>
 <body>
+<!-- DAILY DEVOTION POPUP -->
+<div id="devotionPopup" class="popup">
+  <div class="popup-content">
+    <span onclick="closePopup()">✕</span>
+    <h3>📖 தினமும் ஒரு தேவனுடைய வார்த்தை</h3>
+    <p>"Trust in the Lord with all your heart..."</p>
+<strong>Proverbs 3:5</strong>
+<br><br>
+<a href="#devotion"
+   class="btn-primary"
+   onclick="closePopup()">
+   Read Devotion
+</a>
+  </div>
+</div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="toggleMenu()">✕</button>
   <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#devotion" onclick="toggleMenu()">Devotion</a>
   <a href="#videos" onclick="toggleMenu()">Videos</a>
   <a href="#materials" onclick="toggleMenu()">Book</a>
   <a href="#verse" onclick="toggleMenu()">Scripture</a>
@@ -896,6 +944,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#videos">Videos</a></li>
+	<li><a href="#devotion">Devotion</a></li>
     <li><a href="#verse">Scripture</a></li>
     <li><a href="#mission">Mission</a></li>
     <li><a href="#social">Connect</a></li>
@@ -937,6 +986,45 @@
     <span>Scroll</span>
     <div class="scroll-line"></div>
   </a>
+</section>
+	<section id="devotion" class="section">
+  <div class="container">
+
+    <div class="videos-header">
+      <div class="section-tag" style="justify-content:center;">
+        Daily Devotion
+      </div>
+
+      <h2 class="section-title">
+        Today's <span>Devotion</span>
+      </h2>
+
+      <div class="divider"></div>
+    </div>
+
+    <div class="verse-card">
+
+      <p class="verse-text">
+        "Trust in the Lord with all your heart,
+        and lean not on your own understanding."
+      </p>
+
+      <div class="verse-ref">
+        Proverbs 3:5
+      </div>
+
+      <br>
+
+      <p style="line-height:1.9;color:#ccc;">
+        God invites us to trust Him even when life
+        does not make sense. His wisdom is greater
+        than ours. Every challenge becomes easier
+        when we place our confidence in Him.
+      </p>
+
+    </div>
+
+  </div>
 </section>
 
 <!-- ABOUT -->
@@ -1008,6 +1096,40 @@ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pic
 allowfullscreen
 loading="lazy">
 </iframe>
+			<section id="featured" class="section">
+  <div class="container">
+
+    <div class="videos-header">
+      <div class="section-tag" style="justify-content:center;">
+        Featured Message
+      </div>
+
+      <h2 class="section-title">
+        Watch This <span>Week's Message</span>
+      </h2>
+
+      <div class="divider"></div>
+    </div>
+
+    <div class="video-card"
+         style="max-width:800px;margin:auto;">
+
+      <div class="video-thumb">
+        <iframe
+          src="https://www.youtube.com/embed/4SDKlYaAI_c"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="video-info">
+        <h3>666 - யின் விளக்கம்</h3>
+        <p>வெளிப்படுத்தல் 13 அதிகாரம்</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
           <div class="video-overlay"></div>
         </div>
         <div class="video-info">
@@ -1385,6 +1507,14 @@ loading="lazy">
       link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
     });
   });
+	setTimeout(() => {
+  document.getElementById("devotionPopup").style.display = "flex";
+}, 3000);
+
+function closePopup(){
+  document.getElementById("devotionPopup").style.display = "none";
+}
+	
 </script>
 </body>
 </html>
