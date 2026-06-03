@@ -585,38 +585,6 @@
   color:#ccc;
   margin-bottom:20px;
 }
-	.popup{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  z-index:9999;
-  justify-content:center;
-  align-items:center;
-}
-
-.popup-content{
-  background:#111620;
-  border:1px solid #D4A843;
-  border-radius:15px;
-  padding:30px;
-  max-width:400px;
-  text-align:center;
-  color:white;
-  box-shadow:0 0 30px rgba(212,168,67,.3);
-}
-
-.popup-content h3{
-  color:#D4A843;
-  margin-bottom:15px;
-}
-
-.popup-content span{
-  float:right;
-  cursor:pointer;
-  font-size:24px;
-}
-
 	
   /* ─── FOOTER ─── */
   footer {
@@ -901,7 +869,58 @@
     letter-spacing:0.08em;
     line-height:1.3;
   }
+	@media (max-width:768px){
+
+  .popup-content{
+    width:90%;
+    max-width:320px;
+    padding:20px;
+  }
+
+  .popup-content h3{
+    font-size:1rem;
+  }
+
+  .popup-content p{
+    font-size:0.9rem;
+  }
+
+  .popup-content .btn-primary{
+    padding:12px 20px;
+    font-size:0.85rem;
+    max-width:220px;
+  }
+@media (max-width:768px){
+
+  .videos-grid{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .video-card{
+    width:100%;
+  }
+
+  .video-thumb{
+    padding-bottom:56.25%;
+  }
+
+  .video-info{
+    padding:15px;
+  }
+
+  .video-info h3{
+    font-size:0.9rem;
+  }
+
+  .video-info p{
+    font-size:0.8rem;
+  }
+}		
+}
 	}	
+	
 </style>
 </head>
 <body>
@@ -987,46 +1006,7 @@
     <div class="scroll-line"></div>
   </a>
 </section>
-	<section id="devotion" class="section">
-  <div class="container">
-
-    <div class="videos-header">
-      <div class="section-tag" style="justify-content:center;">
-        Daily Devotion
-      </div>
-
-      <h2 class="section-title">
-        Today's <span>Devotion</span>
-      </h2>
-
-      <div class="divider"></div>
-    </div>
-
-    <div class="verse-card">
-
-      <p class="verse-text">
-        "Trust in the Lord with all your heart,
-        and lean not on your own understanding."
-      </p>
-
-      <div class="verse-ref">
-        Proverbs 3:5
-      </div>
-
-      <br>
-
-      <p style="line-height:1.9;color:#ccc;">
-        God invites us to trust Him even when life
-        does not make sense. His wisdom is greater
-        than ours. Every challenge becomes easier
-        when we place our confidence in Him.
-      </p>
-
-    </div>
-
-  </div>
-</section>
-
+	
 <!-- ABOUT -->
 <section id="about" class="section">
   <div class="container">
@@ -1074,29 +1054,42 @@
     </div>
   </div>
 </section>
-
-<!-- VIDEOS -->
-<section id="videos" class="section">
+	<section id="devotion" class="section">
   <div class="container">
-    <div class="videos-header fade-in">
-      <div class="section-tag" style="justify-content:center;">Featured Content</div>
-      <h2 class="section-title">Latest <span>Messages</span></h2>
+
+    <div class="videos-header">
+      <div class="section-tag" style="justify-content:center;">
+        Daily Devotion
+      </div>
+
+      <h2 class="section-title">
+        இன்றைக்கான <span>தேவ வார்த்தை</span>
+      </h2>
+
       <div class="divider"></div>
     </div>
 
-    <div class="videos-grid">
-      <!-- Video 1 -->
-      <div class="video-card fade-in fade-delay-1">
-        <div class="video-thumb">
-          <iframe 
-src="https://www.youtube.com/embed/4SDKlYaAI_c"
-title="TJ Broadcast Video"
-frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen
-loading="lazy">
-</iframe>
-			<section id="featured" class="section">
+    <div class="verse-card">
+
+      <p class="verse-text">
+        "உன் சுயபுத்தியின்மேல் சாயாமல், உன் முழு இருதயத்தோடும் கர்த்தரில் நம்பிக்கையாயிருந்து,"
+      </p>
+
+      <div class="verse-ref">
+        நீதிமொழிகள் 3:5
+      </div>
+
+      <br>
+
+      <p style="line-height:1.9;color:#ccc;">
+        தேவனுடைய வார்த்தையை முழுமையாக நம்புவதே நம்மை சரியான பாதையில் வழி நடத்தும்.
+      </p>
+
+    </div>
+
+  </div>
+</section>
+	<section id="featured" class="section">
   <div class="container">
 
     <div class="videos-header">
@@ -1105,7 +1098,7 @@ loading="lazy">
       </div>
 
       <h2 class="section-title">
-        Watch This <span>Week's Message</span>
+        இந்த வாரத்திற்கான  <span>தேவனுடைய வார்த்தை</span>
       </h2>
 
       <div class="divider"></div>
@@ -1130,6 +1123,29 @@ loading="lazy">
 
   </div>
 </section>
+
+
+<!-- VIDEOS -->
+<section id="videos" class="section">
+  <div class="container">
+    <div class="videos-header fade-in">
+      <div class="section-tag" style="justify-content:center;">Featured Content</div>
+      <h2 class="section-title">Latest <span>Messages</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="videos-grid">
+      <!-- Video 1 -->
+      <div class="video-card fade-in fade-delay-1">
+        <div class="video-thumb">
+          <iframe 
+src="https://www.youtube.com/embed/4SDKlYaAI_c"
+title="TJ Broadcast Video"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen
+loading="lazy">
+</iframe>
           <div class="video-overlay"></div>
         </div>
         <div class="video-info">
@@ -1507,13 +1523,6 @@ loading="lazy">
       link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
     });
   });
-	setTimeout(() => {
-  document.getElementById("devotionPopup").style.display = "flex";
-}, 3000);
-
-function closePopup(){
-  document.getElementById("devotionPopup").style.display = "none";
-}
 	
 </script>
 </body>
