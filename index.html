@@ -72,8 +72,21 @@
   }
 
   /* ─── FADE-IN ANIMATION ─── */
-  .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
+ .fade-in{
+  opacity:0;
+  transform:translateY(50px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.fade-in.visible{
+  opacity:1;
+  transform:translateY(0);
+}
   .fade-delay-1 { transition-delay: 0.1s; }
   .fade-delay-2 { transition-delay: 0.2s; }
   .fade-delay-3 { transition-delay: 0.3s; }
@@ -192,7 +205,7 @@
   .hero-sub {
     font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     font-style: italic; font-weight: 300; color: var(--text-muted);
-    letter-spacing: 0.06em; margin: 28px 0 50px;
+    letter-spacing: 0.06em; margin: 15px 0 25px;
     opacity: 0; animation: fadeUp 1s 0.7s forwards;
   }
   .hero-sub span { color: var(--gold); }
@@ -806,43 +819,25 @@
   color:white;
   cursor:pointer;
 }
-	@media (max-width:768px){
-
-  body{
-    overflow-x:hidden;
-  }
+	/* MOBILE FIXES */
+@media (max-width:768px){
 
   .hero-title{
     font-size:2.2rem;
-    letter-spacing:0;
     line-height:1.1;
+    letter-spacing:0;
   }
 
   .hero-eyebrow{
+    font-size:0.8rem;
     padding:0 10px;
+    line-height:1.5;
   }
 
   .hero-sub{
+    font-size:0.95rem;
     padding:0 10px;
   }
-
-  .btn-primary,
-  .btn-secondary{
-    width:100%;
-    max-width:300px;
-  }
-
-  .nav-logo{
-    font-size:.8rem;
-  }
-
-  .about-circle,
-.about-glow{
-    width:220px;
-    height:220px;
-}
-}
-@media (max-width:768px){
 
   .about-circle,
   .about-glow{
@@ -850,96 +845,103 @@
     height:180px;
   }
 
-  .about-circle-inner{
-    padding:15px;
-    text-align:center;
-  }
-
   .about-circle-inner .big-icon{
     font-size:2rem;
   }
 
   .about-circle-inner .label{
-    font-size:0.75rem;
-    line-height:1.2;
+    font-size:0.8rem;
   }
 
   .about-circle-inner .sublabel{
     font-size:0.55rem;
-    letter-spacing:0.08em;
-    line-height:1.3;
+    letter-spacing:0.05em;
   }
-	@media (max-width:768px){
-
-  .popup-content{
-    width:90%;
-    max-width:320px;
-    padding:20px;
-  }
-
-  .popup-content h3{
-    font-size:1rem;
-  }
-
-  .popup-content p{
-    font-size:0.9rem;
-  }
-
-  .popup-content .btn-primary{
-    padding:12px 20px;
-    font-size:0.85rem;
-    max-width:220px;
-  }
-@media (max-width:768px){
 
   .videos-grid{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+    grid-template-columns:1fr;
   }
 
   .video-card{
     width:100%;
   }
 
-  .video-thumb{
-    padding-bottom:56.25%;
-  }
-
   .video-info{
     padding:15px;
   }
 
-  .video-info h3{
+  .verse-card{
+    padding:25px 15px;
+  }
+	@media (max-width:768px){
+
+  #devotion .verse-card{
+    padding:20px 15px;
+    margin:0 10px;
+  }
+
+  #devotion .verse-text{
+    font-size:1.2rem;
+    line-height:1.6;
+  }
+}
+}	
+	@media (max-width:768px){
+
+  #hero{
+    min-height:100vh;
+    padding-top:80px;
+    padding-bottom:20px;
+  }
+
+  .hero-title{
+    font-size:2.8rem;
+    line-height:1.1;
+  }
+
+  .hero-eyebrow{
     font-size:0.9rem;
   }
 
-  .video-info p{
-    font-size:0.8rem;
+  .hero-sub{
+    font-size:1rem;
   }
-}		
+}
+  .hero-content{
+    padding-top:0;
+  }
+
+  .hero-eyebrow{
+    margin-bottom:8px;
+    font-size:0.8rem;
+    line-height:1.4;
+  }
+
+  .hero-title{
+    font-size:2rem;
+    margin-bottom:5px;
+    line-height:1;
+  }
+
+  .hero-sub{
+    margin:5px 0 15px;
+    font-size:0.9rem;
+  }
+
+  .hero-cta{
+    gap:10px;
+    margin-top:0;
+  }
+
+  .hero-scroll{
+    display:none;
+  }
 }
 	}	
-	
+
 </style>
 </head>
 <body>
-<!-- DAILY DEVOTION POPUP -->
-<div id="devotionPopup" class="popup">
-  <div class="popup-content">
-    <span onclick="closePopup()">✕</span>
-    <h3>📖 தினமும் ஒரு தேவனுடைய வார்த்தை</h3>
-    <p>"Trust in the Lord with all your heart..."</p>
-<strong>Proverbs 3:5</strong>
-<br><br>
-<a href="#devotion"
-   class="btn-primary"
-   onclick="closePopup()">
-   Read Devotion
-</a>
-  </div>
-</div>
-
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="toggleMenu()">✕</button>
@@ -1054,7 +1056,7 @@
     </div>
   </div>
 </section>
-	<section id="devotion" class="section">
+	<section id="devotion" class="section fade-in">
   <div class="container">
 
     <div class="videos-header">
@@ -1089,7 +1091,7 @@
 
   </div>
 </section>
-	<section id="featured" class="section">
+	<section id="featured" class="section fade-in">
   <div class="container">
 
     <div class="videos-header">
@@ -1126,7 +1128,7 @@
 
 
 <!-- VIDEOS -->
-<section id="videos" class="section">
+<section id="videos" class="section fade-in">
   <div class="container">
     <div class="videos-header fade-in">
       <div class="section-tag" style="justify-content:center;">Featured Content</div>
@@ -1208,7 +1210,7 @@ loading="lazy">
 </section>
 
 <!-- BIBLE VERSE -->
-<section id="verse" class="section">
+<section id="verse" class="section fade-in">
   <div class="verse-bg"></div>
   <div class="container">
     <div class="verse-card fade-in">
@@ -1222,7 +1224,7 @@ loading="lazy">
 </section>
 
 <!-- MISSION -->
-<section id="mission" class="section">
+<section id="mission" class="section fade-in">
   <div class="container">
     <div class="mission-inner">
       <div class="mission-text">
@@ -1290,7 +1292,8 @@ loading="lazy">
 </section>
 
 <!-- SOCIAL -->
-<section id="social" class="section">
+<section id="social" class="section fade-in">
+
   <div class="container">
     <div class="social-header fade-in">
       <div class="section-tag" style="justify-content:center;">எங்களை தொடர்புக்கொள்ள </div>
@@ -1329,7 +1332,7 @@ loading="lazy">
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
+<section id="contact" class="section fade-in">
   <div class="container">
     <div class="contact-inner">
       <div class="contact-info">
@@ -1378,7 +1381,7 @@ loading="lazy">
         <button class="btn-submit" onclick="handleSubmit(this)">Send Message ✦</button>
       </div>
 		<!-- MATERIALS -->
-<section id="materials" class="section">
+<section id="materials" class="section fade-in">
   <div class="container">
 
     <div class="videos-header fade-in">
