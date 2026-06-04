@@ -1346,7 +1346,9 @@ loading="lazy">
           <div class="contact-detail-icon">✉️</div>
           <div class="contact-detail-text">
             <h4>Email Us</h4>
-            <p>tjbroadcast@email.com</p>
+			   <a href="mailto:tjbroadcastministry@gmail.com">
+				   <p>josejo41308@gmail.com</p>
+			  </a>
           </div>
         </div>
         <div class="contact-detail fade-in fade-delay-4">
@@ -1365,21 +1367,30 @@ loading="lazy">
         </div>
       </div>
 
-      <div class="contact-form fade-in fade-delay-2">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="Enter your name">
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="Enter your email">
-        </div>
-        <div class="form-group">
-          <label>Your Message</label>
-          <textarea rows="6" placeholder="Type your message, prayer request, or testimony…"></textarea>
-        </div>
-        <button class="btn-submit" onclick="handleSubmit(this)">Send Message ✦</button>
-      </div>
+      <form class="contact-form"
+      action="josejo41308@gmail.com"
+      method="POST">
+
+  <div class="form-group">
+    <label>Your Name</label>
+    <input type="text" name="name" required>
+  </div>
+
+  <div class="form-group">
+    <label>Email Address</label>
+    <input type="email" name="email" required>
+  </div>
+
+  <div class="form-group">
+    <label>Your Message</label>
+    <textarea name="message" rows="6" required></textarea>
+  </div>
+
+  <button type="submit" class="btn-submit">
+    Send Message ✦
+  </button>
+
+</form>
 		<!-- MATERIALS -->
 <section id="materials" class="section fade-in">
   <div class="container">
