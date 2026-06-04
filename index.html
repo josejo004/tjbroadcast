@@ -936,6 +936,32 @@
   .hero-scroll{
     display:none;
   }
+	.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.gallery-item{
+  overflow:hidden;
+  border-radius:16px;
+}
+
+.gallery-item img{
+  width:100%;
+  display:block;
+  transition:transform .4s ease;
+  cursor:pointer;
+}
+	@media (max-width:768px){
+  .gallery-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+.gallery-item:hover img{
+  transform:scale(1.05);
+}
 }
 	}	
 
@@ -948,8 +974,8 @@
   <a href="#about" onclick="toggleMenu()">About</a>
   <a href="#devotion" onclick="toggleMenu()">Devotion</a>
   <a href="#videos" onclick="toggleMenu()">Videos</a>
+ <a href="#gallery" onclick="toggleMenu()">Gallery</a>
   <a href="#materials" onclick="toggleMenu()">Book</a>
-  <a href="#verse" onclick="toggleMenu()">Scripture</a>
   <a href="#mission" onclick="toggleMenu()">Mission</a>
   <a href="#social" onclick="toggleMenu()">Connect</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
@@ -966,6 +992,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#videos">Videos</a></li>
 	<li><a href="#devotion">Devotion</a></li>
+	<li><a href="#gallery">Gallery</a></li>
     <li><a href="#verse">Scripture</a></li>
     <li><a href="#mission">Mission</a></li>
     <li><a href="#social">Connect</a></li>
@@ -1208,7 +1235,36 @@ loading="lazy">
     </div>
   </div>
 </section>
+	<!-- gallery -->
+	
+<section id="gallery" class="section">
+  <div class="container">
 
+    <div class="section-header">
+      <span class="section-tag">Bible Resources</span>
+      <h2 class="section-title">Image Gallery</h2>
+      <p class="section-subtitle">
+        Bible charts, lesson illustrations, and study materials.
+      </p>
+    </div>
+	  <div class="gallery-item">
+  <a href="image/மரித்தொர்கள் எங்கே இருக்கிறார்கள்.jpg" target="_blank">
+    <img src="image/மரித்தொர்கள் எங்கே இருக்கிறார்கள்.jpg" alt="Bible Chart">
+  </a>
+</div>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="image/புதிய ஏற்பாட்டுக்கு திரும்புவோம்.jpg" alt="Bible Chart">
+      </div>
+
+      <div class="gallery-item">
+        <img src="image/இரட்சிக்கப்பட என்ன செய்ய வேண்டும்.jpg" alt="Bible Lesson">
+      </div>
+    </div>
+  </div>
+</section>
 <!-- BIBLE VERSE -->
 <section id="verse" class="section fade-in">
   <div class="verse-bg"></div>
