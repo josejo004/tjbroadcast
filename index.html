@@ -112,12 +112,14 @@
   }
   .nav-logo span { color: var(--blue-bright); }
 
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a {
-    font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted);
-    text-decoration: none; transition: color 0.25s;
-  }
+  .nav-links { display: flex; gap: 18px; list-style: none; }
+  .nav-links a{
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:0.75rem;
+    font-weight:500;
+    letter-spacing:0;
+    text-transform:none;
+}
   .nav-links a:hover { color: var(--gold); }
 
   .nav-sub-btn {
@@ -743,11 +745,8 @@
 }
 
 .mobile-menu a{
-  font-family:'Cinzel',serif;
-  font-size:1.5rem;
-  font-weight:700;
-  color:var(--text-muted);
-  text-decoration:none;
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:1.2rem;
 }
 
 .mobile-close{
@@ -918,12 +917,13 @@
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="toggleMenu()">✕</button>
-  <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#videos" onclick="toggleMenu()">Videos</a>
- <a href="#gallery" onclick="toggleMenu()">Gallery</a>
-  <a href="#materials" onclick="toggleMenu()">Book</a>
-  <a href="#social" onclick="toggleMenu()">Connect</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#about" onclick="toggleMenu()">நாங்கள் யார்?</a>
+  <a href="#videos" onclick="toggleMenu()">வீடியோக்கள்</a>
+  <a href="#article" onclick="toggleMenu()">கட்டுரைகள்</a>
+  <a href="#gallery" onclick="toggleMenu()">படங்கள்</a>
+  <a href="#materials" onclick="toggleMenu()">புத்தகங்கள்</a>
+  <a href="#social" onclick="toggleMenu()">சமுக  வலைதளம்</a>
+  <a href="#contact" onclick="toggleMenu()">தொடர்புக்கொள்ள</a>
 </div>
 
 <!-- NAV -->
@@ -934,12 +934,13 @@
   TJ<span>.</span>BROADCAST
 </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#videos">Videos</a></li>
-	<li><a href="#gallery">Gallery</a></li>
-	 <li><a href="#materials">Books</a></li>
-    <li><a href="#social">Connect</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">நாங்கள் யார்?</a></li>
+    <li><a href="#videos">வீடியோக்கள்</a></li>
+	<li><a href="#gallery">படங்கள்</a></li>
+	  <li><a href="#article">கட்டுரைகள்</a></li>
+	 <li><a href="#materials">புத்தகம்</a></li>
+    <li><a href="#social">சமுக வலைதளம்</a></li>
+    <li><a href="#contact">தொடர்புக்கொள்ள</a></li>
 	
   </ul>
   <a href="https://www.youtube.com/@TJBROADCAST004" target="_blank" class="nav-sub-btn">Subscribe</a>
@@ -1144,6 +1145,56 @@ loading="lazy">
         </div>
       </div>
     </div>
+  </div>
+</section>
+	
+<section id="articles" class="section fade-in">
+  <div class="container">
+
+    <div class="videos-header">
+      <div class="section-tag">Bible Articles</div>
+
+      <h2 class="section-title">
+        வேதாகம <span>கட்டுரைகள்</span>
+      </h2>
+
+      <div class="divider"></div>
+    </div>
+
+    <div class="materials-grid">
+
+      <div class="material-card">
+        <h3>மரித்தோர் எங்கே இருக்கிறார்கள்?</h3>
+        <p>வேதாகமம் மரணத்தை பற்றி என்ன போதிக்கிறது?</p>
+
+        <a href="articles/death.html"
+           class="btn-secondary">
+           படிக்க
+        </a>
+      </div>
+
+      <div class="material-card">
+        <h3>666 யின் விளக்கம்</h3>
+        <p>வெளிப்படுத்தல் 13 அதிகார ஆய்வு.</p>
+
+        <a href="articles/666.html"
+           class="btn-secondary">
+           படிக்க
+        </a>
+      </div>
+
+      <div class="material-card">
+        <h3>இரட்சிக்கப்பட என்ன செய்ய வேண்டும்?</h3>
+        <p>வேதாகமத்தின் பதில்.</p>
+
+        <a href="articles/salvation.html"
+           class="btn-secondary">
+           படிக்க
+        </a>
+      </div>
+
+    </div>
+
   </div>
 </section>
 	<!-- gallery -->
