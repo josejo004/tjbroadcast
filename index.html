@@ -7,6 +7,7 @@
 <title>TJ BROADCAST — சத்தியத்தை அறிவீர்கள் சத்தியம் உங்களை விடுதலையாக்கும் - யோவான் 8:32</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #D4A843;
@@ -292,6 +293,10 @@
   .about-text .section-tag { justify-content: flex-start; }
   .about-text .section-tag::before { display: none; }
   .about-text .section-title { text-align: left; }
+	.about-text .section-title{
+    font-family:'Noto Serif Tamil', serif;
+    line-height:1.4;
+}
 
   .about-desc {
     font-size: 1.05rem; line-height: 1.9; color: var(--text-muted);
@@ -337,14 +342,33 @@
     border: 1px solid rgba(255,255,255,0.06); transition: all 0.4s ease;
     position: relative;
   }
+	.video-card{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.video-info{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.video-meta{
+    margin-top:auto;
+}
   .video-card:hover {
     transform: translateY(-8px); border-color: rgba(212,168,67,0.4);
     box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(212,168,67,0.15);
   }
 
-  .video-thumb {
-    position: relative; padding-bottom: 56.25%; overflow: hidden; background: #0D1118;
-  }
+ .video-thumb{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    overflow:hidden;
+    background:#0D1118;
+}
   .video-thumb iframe {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     border: none;
@@ -376,97 +400,6 @@
     padding: 3px 10px; border-radius: 4px; font-size: 0.7rem;
     font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
   }
-
-  /* ─── BIBLE VERSE ─── */
-  #verse {
-    background: linear-gradient(135deg, #060810 0%, #0A1020 50%, #060810 100%);
-    position: relative;
-  }
-  .verse-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(212,168,67,0.08) 0%, transparent 60%);
-  }
-
-  .verse-card {
-    max-width: 820px; margin: 0 auto; text-align: center; position: relative; z-index: 1;
-    padding: 70px 60px;
-    background: linear-gradient(135deg, rgba(212,168,67,0.06), rgba(30,111,168,0.08));
-    border: 1px solid rgba(212,168,67,0.25); border-radius: 20px;
-    box-shadow: 0 0 80px rgba(212,168,67,0.1), inset 0 0 60px rgba(0,0,0,0.3);
-  }
-  .verse-card::before {
-    content: '\201C'; position: absolute; top: 20px; left: 40px;
-    font-family: 'Cinzel', serif; font-size: 8rem; color: rgba(212,168,67,0.12);
-    line-height: 1;
-  }
-  .verse-card::after {
-    content: '✦'; position: absolute; bottom: 30px; right: 40px;
-    font-size: 1.5rem; color: rgba(212,168,67,0.2);
-  }
-
-  .verse-text {
-    font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 3vw, 2rem);
-    font-style: italic; font-weight: 300; line-height: 1.7; color: var(--text-main);
-    margin-bottom: 28px; position: relative; z-index: 1;
-  }
-  .verse-ref {
-    font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
-    color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase;
-  }
-  .verse-glow {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 500px; height: 200px;
-    background: radial-gradient(ellipse, rgba(212,168,67,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  /* ─── MISSION ─── */
-  #mission { background: var(--bg-mid); }
-  .mission-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .mission-text .section-tag { justify-content: flex-start; }
-  .mission-text .section-tag::before { display: none; }
-  .mission-text .section-title { text-align: left; }
-  .mission-desc {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.9;
-    color: var(--text-muted); margin-bottom: 36px;
-  }
-  .mission-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .mission-stat {
-    padding: 24px; border-radius: 10px;
-    background: rgba(212,168,67,0.05); border: 1px solid rgba(212,168,67,0.15);
-    text-align: center; transition: all 0.3s;
-  }
-  .mission-stat:hover { background: rgba(212,168,67,0.1); transform: scale(1.03); }
-  .mission-stat .num {
-    font-family: 'Cinzel', serif; font-size: 2.2rem; font-weight: 900;
-    color: var(--gold); display: block;
-  }
-  .mission-stat .lbl {
-    font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--text-muted); margin-top: 4px; display: block;
-  }
-
-  .mission-pillars { display: flex; flex-direction: column; gap: 20px; }
-  .pillar {
-    display: flex; gap: 20px; padding: 24px; border-radius: 10px;
-    background: var(--bg-card2); border: 1px solid rgba(30,111,168,0.15);
-    transition: all 0.3s; position: relative; overflow: hidden;
-  }
-  .pillar::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-    background: linear-gradient(to bottom, var(--gold), var(--blue-bright));
-    border-radius: 0 2px 2px 0;
-  }
-  .pillar:hover { border-color: rgba(212,168,67,0.3); transform: translateX(6px); }
-  .pillar-num {
-    font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 900;
-    color: rgba(212,168,67,0.2); flex-shrink: 0; line-height: 1;
-  }
-  .pillar h4 {
-    font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700;
-    color: var(--gold); margin-bottom: 6px;
-  }
-  .pillar p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
 
   /* ─── SOCIAL ─── */
   #social { background: var(--bg-dark); }
@@ -571,35 +504,37 @@
   .btn-submit:hover { transform: translateY(-2px); box-shadow: var(--glow-gold); }
 .materials-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:30px;
 }
 
 .material-card{
   background:#111620;
   border:1px solid rgba(212,168,67,.2);
-  border-radius:12px;
-  padding:25px;
+  border-radius:16px;
+  padding:30px;
   text-align:center;
-}
-
-.material-card img{
-  width:100%;
-  border-radius:10px;
-  margin-bottom:15px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:260px;
 }
 
 .material-card h3{
   color:#D4A843;
-  margin-bottom:10px;
+  margin-bottom:15px;
 }
 
 .material-card p{
   color:#ccc;
-  margin-bottom:20px;
+  margin-bottom:25px;
+  flex-grow:1;
 }
-	
-  /* ─── FOOTER ─── */
+
+.material-card .btn-secondary{
+  width:100%;
+  justify-content:center;
+}  /* ─── FOOTER ─── */
   footer {
     background: #050709; border-top: 1px solid rgba(212,168,67,0.1);
     padding: 50px 32px 30px;
@@ -972,11 +907,9 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="toggleMenu()">✕</button>
   <a href="#about" onclick="toggleMenu()">About</a>
-  <a href="#devotion" onclick="toggleMenu()">Devotion</a>
   <a href="#videos" onclick="toggleMenu()">Videos</a>
  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
   <a href="#materials" onclick="toggleMenu()">Book</a>
-  <a href="#mission" onclick="toggleMenu()">Mission</a>
   <a href="#social" onclick="toggleMenu()">Connect</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
 </div>
@@ -991,13 +924,11 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#videos">Videos</a></li>
-	<li><a href="#devotion">Devotion</a></li>
 	<li><a href="#gallery">Gallery</a></li>
-    <li><a href="#verse">Scripture</a></li>
-    <li><a href="#mission">Mission</a></li>
+	 <li><a href="#materials">Books</a></li>
     <li><a href="#social">Connect</a></li>
     <li><a href="#contact">Contact</a></li>
-	<li><a href="#materials">Books</a></li>
+	
   </ul>
   <a href="https://www.youtube.com/@TJBROADCAST004" target="_blank" class="nav-sub-btn">Subscribe</a>
   <div class="hamburger" onclick="toggleMenu()">
@@ -1051,7 +982,7 @@
         </div>
       </div>
       <div class="about-text">
-        <div class="section-tag fade-in">About the Channel</div>
+        <div class="section-tag fade-in"> நாங்கள் யார் ?</div>
         <h2 class="section-title fade-in fade-delay-1">கிறிஸ்துவின் சபையார் <span>உங்களை</span> வாழ்த்துகிறார்கள் ரோமர் 16:16 </h2>
         <p class="about-desc fade-in fade-delay-2">
           TJ Broadcast-யில், சத்தியம் வாழ்க்கையை மாற்றுகிறது என்று நாங்கள் நம்புகிறோம். ஒவ்வொரு செய்தியும் நம்பிக்கையுடனும் நோக்கத்துடனும் தேவனின் ஜீவ ஒளியில் நடக்க உங்களை ஊக்குவிக்கவும், , வழிநடத்தவும் வடிவமைக்கப்பட்டுள்ளது.
@@ -1083,41 +1014,7 @@
     </div>
   </div>
 </section>
-	<section id="devotion" class="section fade-in">
-  <div class="container">
-
-    <div class="videos-header">
-      <div class="section-tag" style="justify-content:center;">
-        Daily Devotion
-      </div>
-
-      <h2 class="section-title">
-        இன்றைக்கான <span>தேவ வார்த்தை</span>
-      </h2>
-
-      <div class="divider"></div>
-    </div>
-
-    <div class="verse-card">
-
-      <p class="verse-text">
-        "உன் சுயபுத்தியின்மேல் சாயாமல், உன் முழு இருதயத்தோடும் கர்த்தரில் நம்பிக்கையாயிருந்து,"
-      </p>
-
-      <div class="verse-ref">
-        நீதிமொழிகள் 3:5
-      </div>
-
-      <br>
-
-      <p style="line-height:1.9;color:#ccc;">
-        தேவனுடைய வார்த்தையை முழுமையாக நம்புவதே நம்மை சரியான பாதையில் வழி நடத்தும்.
-      </p>
-
-    </div>
-
-  </div>
-</section>
+	
 	<section id="featured" class="section fade-in">
   <div class="container">
 
@@ -1265,87 +1162,46 @@ loading="lazy">
     </div>
   </div>
 </section>
-<!-- BIBLE VERSE -->
-<section id="verse" class="section fade-in">
-  <div class="verse-bg"></div>
+	<!-- PDF BOOK -->
+			<!-- MATERIALS -->
+<section id="materials" class="section fade-in">
   <div class="container">
-    <div class="verse-card fade-in">
-      <div class="verse-glow"></div>
-      <p class="verse-text">
-        "சத்தியத்தையும் அறிவீர்கள், சத்தியம் உங்களை விடுதலையாக்கும் என்றார்.."
-      </p>
-      <div class="verse-ref">— யோவான் 8:32 —</div>
+
+    <div class="videos-header fade-in">
+      <div class="section-tag" style="justify-content:center;">
+        Free Resources
+      </div>
+      <h2 class="section-title">
+        ஆவிக்குரிய  <span>புத்தகங்கள்</span>
+      </h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="materials-grid">
+      <!-- SECOND PDF -->
     </div>
   </div>
 </section>
+      <div class="material-card">
+        <h3>📖 எபிரெயர் புத்தக குறிப்புகள்</h3>
+        <p>ஆவிக்குரிய வளர்ச்சிக்காக.</p>
 
-<!-- MISSION -->
-<section id="mission" class="section fade-in">
-  <div class="container">
-    <div class="mission-inner">
-      <div class="mission-text">
-        <div class="section-tag fade-in">Our Calling</div>
-        <h2 class="section-title fade-in fade-delay-1">A Mission That <span>Changes Lives</span></h2>
-        <p class="mission-desc fade-in fade-delay-2">
-          TJ BROADCAST was born out of a deep conviction that the youth of this generation need to
-          encounter the living God — not through religion, but through relationship. We exist to bridge
-          the gap between young hearts and God's eternal Word, making truth accessible, relevant, and
-          transformative. Every video, every message, every post carries one aim: to help young people
-          discover who they are in Christ.
-        </p>
-        <div class="mission-stat-row fade-in fade-delay-3">
-          <div class="mission-stat">
-            <span class="num">∞</span>
-            <span class="lbl">Souls Reached</span>
-          </div>
-          <div class="mission-stat">
-            <span class="num">100%</span>
-            <span class="lbl">Gospel Focused</span>
-          </div>
-          <div class="mission-stat">
-            <span class="num">24/7</span>
-            <span class="lbl">Content Available</span>
-          </div>
-          <div class="mission-stat">
-            <span class="num">1 God</span>
-            <span class="lbl">One Message</span>
-          </div>
-        </div>
+        <a href="எபிரெயர்.pdf"
+   target="_blank"
+   class="btn-secondary">
+   Open PDF
+</a>
       </div>
+		<div class="material-card">
+        <h4>📖 2 கொரிந்தியர்</h4>
+        <p>பவுல் என்னும் நான்.</p>
 
-      <div class="mission-pillars">
-        <div class="pillar fade-in fade-delay-1">
-          <div class="pillar-num">01</div>
-          <div>
-            <h4>Inspire Faith</h4>
-            <p>Building unshakeable belief in the hearts of young people through Scripture and testimony.</p>
-          </div>
-        </div>
-        <div class="pillar fade-in fade-delay-2">
-          <div class="pillar-num">02</div>
-          <div>
-            <h4>Share Truth</h4>
-            <p>Delivering the uncompromised Word of God with clarity, love, and conviction.</p>
-          </div>
-        </div>
-        <div class="pillar fade-in fade-delay-3">
-          <div class="pillar-num">03</div>
-          <div>
-            <h4>Reach Souls</h4>
-            <p>Using digital media as a tool of evangelism to bring people into God's Kingdom.</p>
-          </div>
-        </div>
-        <div class="pillar fade-in fade-delay-4">
-          <div class="pillar-num">04</div>
-          <div>
-            <h4>Make Disciples</h4>
-            <p>Not just converting people, but equipping them to live as committed followers of Christ.</p>
-          </div>
-        </div>
+        <a href="2 CORINTHIANS Final.pdf"
+   target="_blank"
+   class="btn-secondary">
+   Open PDF
+</a>
       </div>
-    </div>
-  </div>
-</section>
 
 <!-- SOCIAL -->
 <section id="social" class="section fade-in">
@@ -1453,75 +1309,6 @@ loading="lazy">
   </button>
 		  </div>
 </form>
-		<!-- MATERIALS -->
-<section id="materials" class="section fade-in">
-  <div class="container">
-
-    <div class="videos-header fade-in">
-      <div class="section-tag" style="justify-content:center;">
-        Free Resources
-      </div>
-      <h2 class="section-title">
-        ஆவிக்குரிய  <span>புத்தகங்கள்</span>
-      </h2>
-      <div class="divider"></div>
-    </div>
-
-    <div class="materials-grid">
-
-      <!-- PDF BOOK -->
-      <div class="material-card">
-        <h3>📖 எபிரெயர் புத்தக குறிப்புகள்</h3>
-        <p>ஆவிக்குரிய வளர்ச்சிக்காக.</p>
-
-        <a href="எபிரெயர்.pdf"
-   target="_blank"
-   class="btn-secondary">
-   Open PDF
-</a>
-      </div>
-		<div class="material-card">
-        <h4>📖 2 கொரிந்தியர்</h4>
-        <p>பவுல் என்னும் நான்.</p>
-
-        <a href="2 CORINTHIANS Final.pdf"
-   target="_blank"
-   class="btn-secondary">
-   Open PDF
-</a>
-      </div>
-
-
-      <!-- IMAGE -->
-      <div class="material-card">
-        <img src="image/இரட்சிக்கப்பட என்ன செய்ய வேண்டும்.jpg"
-             alt="இரட்சிக்கப்பட என்ன செய்ய வேண்டும்">
-
-        <h3>இரட்சிக்கப்பட என்ன செய்ய வேண்டும்</h3>
-
-        <a href="image/இரட்சிக்கப்பட என்ன செய்ய வேண்டும்.jpg"
-           target="_blank"
-           class="btn-secondary">
-           View Image
-        </a>
-      </div>
-
-      <!-- SECOND PDF -->
-      <div class="material-card">
-        <h3>📚 Bible Notes</h3>
-        <p>Printable Bible lesson notes.</p>
-
-        <a href="file:///D|/tj broadcast/web site/pdf/bible-notes.pdf"
-           target="_blank"
-           class="btn-secondary">
-           Download
-        </a>
-      </div>
-
-    </div>
-
-  </div>
-</section>
     </div>
   </div>
 	
