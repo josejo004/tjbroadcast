@@ -528,6 +528,45 @@
   min-height:260px;
 }
 
+	.article-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+}
+
+.article-card{
+  background:#111620;
+  border:1px solid rgba(212,168,67,.2);
+  border-radius:16px;
+  overflow:hidden;
+  transition:.3s;
+}
+
+.article-card:hover{
+  transform:translateY(-8px);
+  border-color:#D4A843;
+}
+
+.article-content{
+  padding:25px;
+}
+
+.article-date{
+  color:#D4A843;
+  font-size:.8rem;
+  margin-bottom:10px;
+}
+
+.article-title{
+  font-size:1.3rem;
+  margin-bottom:15px;
+}
+
+.article-desc{
+  color:#ccc;
+  line-height:1.7;
+  margin-bottom:20px;
+}
 .material-card h3{
   color:#D4A843;
   margin-bottom:15px;
@@ -909,6 +948,47 @@
         height:80px;
     }
 }
+	.article-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+}
+
+.article-card{
+    background:#111620;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid rgba(212,168,67,.15);
+    transition:.3s;
+}
+
+.article-card:hover{
+    transform:translateY(-8px);
+    border-color:#D4A843;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+
+.article-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.article-content{
+    padding:25px;
+}
+
+.article-content h3{
+    color:#D4A843;
+    margin-bottom:15px;
+}
+
+.article-content p{
+    color:#bbb;
+    line-height:1.7;
+    margin-bottom:20px;
+}
 }
 	}	
 
@@ -920,7 +1000,7 @@
   <button class="mobile-close" onclick="toggleMenu()">✕</button>
   <a href="#about" onclick="toggleMenu()">நாங்கள் யார்?</a>
   <a href="#videos" onclick="toggleMenu()">வீடியோக்கள்</a>
-  <a href="#article" onclick="toggleMenu()">கட்டுரைகள்</a>
+  <a href="#articles" onclick="toggleMenu()">கட்டுரைகள்</a>
   <a href="#gallery" onclick="toggleMenu()">படங்கள்</a>
   <a href="#materials" onclick="toggleMenu()">புத்தகங்கள்</a>
   <a href="#social" onclick="toggleMenu()">சமுக  வலைதளம்</a>
@@ -938,7 +1018,7 @@
     <li><a href="#about">நாங்கள் யார்?</a></li>
     <li><a href="#videos">வீடியோக்கள்</a></li>
 	<li><a href="#gallery">படங்கள்</a></li>
-	  <li><a href="#article">கட்டுரைகள்</a></li>
+	  <li><a href="#articles">கட்டுரைகள்</a></li>
 	 <li><a href="#materials">புத்தகம்</a></li>
     <li><a href="#social">சமுக வலைதளம்</a></li>
     <li><a href="#contact">தொடர்புக்கொள்ள</a></li>
@@ -1148,7 +1228,7 @@ loading="lazy">
     </div>
   </div>
 </section>
-	
+<!--	blog and article-->
 <section id="articles" class="section fade-in">
   <div class="container">
 
@@ -1168,7 +1248,7 @@ loading="lazy">
         <h3>நமக்குள் இருக்கும் அபிசேகம்</h3>
         <p>வசனத்தின் படி அபிசேகம் என்பது என்ன?</p>
 
-        <a href="articles/நமக்குள் இருக்கும் அபிஷேகம்.pdf"
+        <a href="Blog/நமக்குள் இருக்கும் அபிசேஷகம்.html"
            class="btn-secondary">
            படிக்க
         </a>
