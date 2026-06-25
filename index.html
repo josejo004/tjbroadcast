@@ -113,12 +113,12 @@
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 999;
-    padding: 18px 32px;
+    padding:10px 25px;
     display: flex; align-items: center; justify-content: space-between;
     background: rgba(8,10,15,0.85); backdrop-filter: blur(16px);
     transition: all 0.3s ease;
   }
-  nav.scrolled { padding: 12px 32px; background: rgba(8,10,15,0.97); }
+  nav.scrolled { padding: 8px 25px; background: rgba(8,10,15,0.97); }
 
   .nav-logo {
     font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 900;
@@ -543,13 +543,53 @@
   justify-content:space-between;
   min-height:260px;
 }
+.resources-section{
+padding:80px 20px;
+text-align:center;
+}
 
+.resource-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+max-width:1100px;
+margin:auto;
+}
+
+.resource-card{
+background:#111620;
+border:1px solid rgba(212,168,67,.3);
+border-radius:15px;
+overflow:hidden;
+text-decoration:none;
+color:white;
+transition:.3s;
+}
+
+.resource-card:hover{
+transform:translateY(-8px);
+}
+
+.resource-card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.resource-card h3{
+padding:20px;
+}
 	.article-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
   gap:30px;
 }
-
+	.resource-card img{
+    width:100%;
+    height:310px;
+    object-fit:cover;
+    display:block;
+}
 .article-card{
   background:#111620;
   border:1px solid rgba(212,168,67,.2);
@@ -886,10 +926,11 @@
 
   #hero{
     min-height:100vh;
-    padding-top:80px;
-    padding-bottom:20px;
-  }
-
+    padding-top:140px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+}
   .hero-title{
     font-size:2.8rem;
     line-height:1.1;
@@ -905,6 +946,7 @@
 }
   .hero-content{
     padding-top:0;
+	  margin-top:20px;
   }
 
   .hero-eyebrow{
@@ -1096,7 +1138,7 @@ background:#080A0F;
   <a href="#videos" onclick="toggleMenu()">வீடியோக்கள்</a>
   <a href="#articles" onclick="toggleMenu()">கட்டுரைகள்</a>
   <a href="#gallery" onclick="toggleMenu()">படங்கள்</a>
-  <a href="#materials" onclick="toggleMenu()">புத்தகங்கள்</a>
+  <a href="#resources" onclick="toggleMenu()">புத்தகங்கள்</a>
   <a href="#social" onclick="toggleMenu()">சமுக  வலைதளம்</a>
   <a href="#contact" onclick="toggleMenu()">தொடர்புக்கொள்ள</a>
 </div>
@@ -1113,7 +1155,7 @@ background:#080A0F;
     <li><a href="#videos">வீடியோக்கள்</a></li>
 	<li><a href="#gallery">படங்கள்</a></li>
 	  <li><a href="#articles">கட்டுரைகள்</a></li>
-	 <li><a href="#materials">புத்தகம்</a></li>
+	 <li><a href="#resources">புத்தகம்</a></li>
     <li><a href="#social">சமுக வலைதளம்</a></li>
     <li><a href="#contact">தொடர்புக்கொள்ள</a></li>
 	
@@ -1149,6 +1191,9 @@ background:#080A0F;
     </div>
 	  
 	   <div class="hero-gallery">
+	  <img src="image/new-testment.png" class="gallery-slide">
+	  <img src="image/col.png" class="gallery-slide">
+	  <img src="image/jude_.png" class="gallery-slide">
       <img src="image/intro-one.png" class="gallery-slide active">
       <img src="image/intro-two.png" class="gallery-slide">
       <img src="image/intro-third.png" class="gallery-slide">
@@ -1413,45 +1458,30 @@ loading="lazy">
 </section>
 	<!-- PDF BOOK -->
 			<!-- MATERIALS -->
-<section id="materials" class="section fade-in">
-  <div class="container">
+<section id="resources" class="resources-section">
 
-    <div class="videos-header fade-in">
-      <div class="section-tag" style="justify-content:center;">
-        Free Resources
-      </div>
-      <h2 class="section-title">
-        ஆவிக்குரிய  <span>புத்தகங்கள்</span>
-      </h2>
-      <div class="divider"></div>
-    </div>
+<h2>📚 Free Resources</h2>
 
-    <div class="materials-grid">
-      <!-- SECOND PDF -->
-    </div>
-  </div>
+<div class="resource-grid">
+
+<a href="free-resources/old-testment/old-testment.html" class="resource-card">
+<img src="image/Untitled-1.png">
+<h3>பழைய ஏற்பாடு குறிப்புகள்</h3>
+</a>
+
+<a href="free-resources/new-testment/New-testment.html" class="resource-card">
+<img src="image/new-testment.png">
+<h3>புதிய ஏற்பாடு குறிப்புகள்</h3>
+</a>
+
+<a href="free-resources/heading-wise/heading-wise.html" class="resource-card">
+<img src="image/heading-wise.png">
+<h3>தலைப்புவாரியான பாடங்கள்</h3>
+</a>
+
+</div>
+
 </section>
-      <div class="material-card">
-        <h3>📖 எபிரெயர் புத்தக குறிப்புகள்</h3>
-        <p>ஆவிக்குரிய வளர்ச்சிக்காக.</p>
-
-        <a href="எபிரெயர்.pdf"
-   target="_blank"
-   class="btn-secondary">
-   Open PDF
-</a>
-      </div>
-		<div class="material-card">
-        <h4>📖 2 கொரிந்தியர்</h4>
-        <p>பவுல் என்னும் நான்.</p>
-
-        <a href="2 CORINTHIANS Final.pdf"
-   target="_blank"
-   class="btn-secondary">
-   Open PDF
-</a>
-      </div>
-
 <!-- SOCIAL -->
 <section id="social" class="section fade-in">
 
