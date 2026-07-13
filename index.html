@@ -579,6 +579,8 @@ object-fit:cover;
 .resource-card h3{
 padding:20px;
 }
+/*	article*/
+	
 	.article-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -633,10 +635,166 @@ padding:20px;
   margin-bottom:25px;
   flex-grow:1;
 }
+	.article-box{
+    max-width:900px;
+    margin:auto;
+    background:#111620;
+    border:1px solid rgba(212,168,67,.25);
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.article-heading{
+    background:linear-gradient(90deg,#D4A843,#A07830);
+    color:#080A0F;
+    padding:18px;
+    text-align:center;
+    font-size:1.5rem;
+    font-weight:bold;
+}
+
+.article-list{
+    padding:20px;
+}
+
+.article-item{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:18px 20px;
+    text-decoration:none;
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    transition:.3s;
+}
+
+.article-item:last-child{
+    border-bottom:none;
+}
+
+.article-item span{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#D4A843;
+    color:#080A0F;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    flex-shrink:0;
+}
+
+.article-item:hover{
+    background:rgba(212,168,67,.08);
+    color:#D4A843;
+    padding-left:30px;
+}
+	.article-topic{
+    display:block;
+    max-width:900px;
+    margin:auto;
+    padding:50px;
+    background:#111620;
+    border:1px solid rgba(212,168,67,.25);
+    border-radius:18px;
+    text-decoration:none;
+    text-align:center;
+    transition:.35s;
+}
+
+.article-topic:hover{
+    transform:translateY(-8px);
+    border-color:#D4A843;
+    box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+
+.article-topic h2{
+    color:#D4A843;
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+.article-topic p{
+    color:#cccccc;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.article-topic span{
+    color:#2E9FE6;
+    font-weight:bold;
+    font-size:1.1rem;
+}
+	.article-topic{
+    display:block;
+    max-width:900px;
+    margin:0 auto;
+    background:#111620;
+    border:1px solid rgba(212,168,67,.2);
+    border-radius:18px;
+    overflow:hidden;
+    text-decoration:none;
+    color:#fff;
+    transition:.35s ease;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.article-topic:hover{
+    transform:translateY(-6px);
+    border-color:#D4A843;
+    box-shadow:0 15px 35px rgba(212,168,67,.25);
+}
+
+.article-image{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    display:block;
+}
+
+.article-content{
+    padding:30px;
+}
+
+.article-content h2{
+    color:#D4A843;
+    margin:0 0 15px;
+    font-size:2rem;
+}
+
+.article-content p{
+    color:#d7d7d7;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.article-content span{
+    color:#D4A843;
+    font-weight:700;
+    font-size:16px;
+}
+
+@media (max-width:768px){
+
+.article-image{
+    height:200px;
+}
+
+.article-content{
+    padding:20px;
+}
+
+.article-content h2{
+    font-size:1.5rem;
+}
+
+}
 
 .material-card .btn-secondary{
   width:100%;
   justify-content:center;
+	
 }  /* ─── FOOTER ─── */
   footer {
     background: #050709; border-top: 1px solid rgba(212,168,67,0.1);
@@ -1378,53 +1536,27 @@ loading="lazy">
 </section>
 <!--	blog and article-->
 <section id="articles" class="section fade-in">
-  <div class="container">
+    <div class="container">
 
-    <div class="videos-header">
-      <div class="section-tag">Bible Articles</div>
+        <a href="Blog/blog.html" class="article-topic">
 
-      <h2 class="section-title">
-        வேதாகம <span>கட்டுரைகள்</span>
-      </h2>
+            <img src="image/blog-image.png" alt="Bible Articles" class="article-image">
 
-      <div class="divider"></div>
-    </div>
+            <div class="article-content">
+                <h2>📖 வேதாகம கட்டுரைகள்</h2>
 
-    <div class="materials-grid">
+                <p>
+                    வேதாகம ஆய்வு கட்டுரைகள், விசுவாச வாழ்க்கை,
+                    ஆவிக்குரிய வளர்ச்சி மற்றும் பல பயனுள்ள
+                    கட்டுரைகளை வாசிக்க இங்கே கிளிக் செய்யுங்கள்.
+                </p>
 
-      <div class="material-card">
-        <h3>நமக்குள் இருக்கும் அபிசேகம்</h3>
-        <p>வசனத்தின் படி அபிசேகம் என்பது என்ன?</p>
+                <span>அனைத்து கட்டுரைகளையும் காண →</span>
+            </div>
 
-        <a href="Blog/நமக்குள் இருக்கும் அபிசேஷகம்.html"
-           class="btn-secondary">
-           படிக்க
         </a>
-      </div>
-
-      <div class="material-card">
-        <h3>விசுவாசத்தினால் நீதிமான் பிழைப்பான்</h3>
-        <p>எதினால் நீங்கள் வழி நடந்தப்படுகிறீர்கள்?</p>
-
-        <a href="articles/விசுவாசத்தினால் நீதிமான் பிழைப்பான்.pdf"
-           class="btn-secondary">
-           படிக்க
-        </a>
-      </div>
-
-      <div class="material-card">
-        <h3>வளர்ச்சியா அல்லது தோற்றமா?</h3>
-        <p>உண்மையான வளர்ச்சி என்பது என்ன?</p>
-
-        <a href="articles/வளர்ச்சியா அல்லது வளர்ச்சி போன்ற தோற்றமா.pdf"
-           class="btn-secondary">
-           படிக்க
-        </a>
-      </div>
 
     </div>
-
-  </div>
 </section>
 	<!-- gallery -->
 	
