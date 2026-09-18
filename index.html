@@ -2089,6 +2089,114 @@ background:#080A0F;
   }
 
 }
+	/* ===============================
+   WHATSAPP + CALL BUTTONS
+================================ */
+
+.contact-action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.contact-action {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 15px 18px;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  background: rgba(255,255,255,0.035);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  transition: all 0.3s ease;
+}
+
+.contact-action .action-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  font-size: 1.25rem;
+
+  flex-shrink: 0;
+}
+
+.contact-action strong {
+  display: block;
+
+  color: var(--text-main);
+
+  font-family: 'Rajdhani', sans-serif;
+
+  font-size: 0.9rem;
+
+  font-weight: 700;
+}
+
+.contact-action small {
+  display: block;
+
+  color: var(--text-muted);
+
+  font-size: 0.7rem;
+
+  margin-top: 2px;
+}
+
+
+/* WHATSAPP */
+
+.whatsapp-action:hover {
+  border-color: rgba(37,211,102,0.5);
+  background: rgba(37,211,102,0.06);
+
+  transform: translateY(-3px);
+}
+
+.whatsapp-action .action-icon {
+  background: rgba(37,211,102,0.12);
+}
+
+
+/* CALL */
+
+.call-action:hover {
+  border-color: rgba(46,159,230,0.5);
+  background: rgba(46,159,230,0.06);
+
+  transform: translateY(-3px);
+}
+
+.call-action .action-icon {
+  background: rgba(46,159,230,0.12);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  .contact-action-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-action {
+    padding: 14px 16px;
+  }
+
+}
 
 </style>
 </head>
@@ -2811,8 +2919,39 @@ loading="lazy">
     </div>
 
   </div>
+	<div class="contact-action-buttons">
+
+  <!-- WhatsApp -->
+  <a
+    href="https://wa.me/919486741399"
+    class="contact-action whatsapp-action"
+    target="_blank"
+    rel="noopener"
+  >
+    <span class="action-icon">💬</span>
+    <span>
+      <strong>WhatsApp</strong>
+      <small>Message Us</small>
+    </span>
+  </a>
+
+
+  <!-- Direct Call -->
+  <a
+    href="tel:+919486741399"
+    class="contact-action call-action"
+  >
+    <span class="action-icon">📞</span>
+    <span>
+      <strong>Call Us</strong>
+      <small>94867 41399</small>
+    </span>
+  </a>
+
+</div>
 
 </section>
+	
       
 
 <!-- FOOTER -->
