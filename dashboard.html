@@ -548,7 +548,7 @@ $("content").value = data.content || "";
     const title = $("title").value.trim();
 const slug = $("slug").value.trim();
 
-const content = quill.getSemanticHTML().trim();
+const content = quill.root.innerHTML.trim();
 $("content").value = content;
 
 const plainText = quill.getText().trim();
