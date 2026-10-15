@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TJ Broadcast | Blog Dashboard</title>
+  <link
+  href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css"
+  rel="stylesheet"
+>
 
   <style>
     * {
@@ -175,6 +179,51 @@
         padding: 18px;
       }
     }
+
+    /* Rich-text blog editor */
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #f8fafc;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+#editor {
+  background: white;
+  min-height: 300px;
+  font-family: "Noto Sans Tamil", Arial, sans-serif;
+  font-size: 17px;
+}
+
+#editor .ql-editor {
+  min-height: 300px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+#editor .ql-editor h1,
+#editor .ql-editor h2,
+#editor .ql-editor h3 {
+  margin: 18px 0 10px;
+  line-height: 1.5;
+}
+
+#editor .ql-editor blockquote {
+  border-left: 4px solid #6d28d9;
+  background: #f5f3ff;
+  padding: 12px 16px;
+  color: #4c1d95;
+  margin: 18px 0;
+}
+
+#editor .ql-editor a {
+  color: #6d28d9;
+  text-decoration: underline;
+}
   </style>
 </head>
 
@@ -211,10 +260,50 @@
             <textarea id="excerpt" rows="3"></textarea>
           </div>
 
-          <div class="field full">
-            <label for="content">Blog content *</label>
-            <textarea id="content" required></textarea>
-          </div>
+         <div class="field full">
+  <label for="content">Blog content *</label>
+
+  <div id="toolbar" class="editor-toolbar">
+    <span class="ql-formats">
+      <select class="ql-header">
+        <option selected></option>
+        <option value="1"></option>
+        <option value="2"></option>
+        <option value="3"></option>
+      </select>
+    </span>
+
+    <span class="ql-formats">
+      <button type="button" class="ql-bold"></button>
+      <button type="button" class="ql-italic"></button>
+      <button type="button" class="ql-underline"></button>
+    </span>
+
+    <span class="ql-formats">
+      <button type="button" class="ql-blockquote"></button>
+      <button type="button" class="ql-link"></button>
+    </span>
+
+    <span class="ql-formats">
+      <button type="button" class="ql-list" value="ordered"></button>
+      <button type="button" class="ql-list" value="bullet"></button>
+    </span>
+
+    <span class="ql-formats">
+      <select class="ql-align"></select>
+      <button type="button" class="ql-clean"></button>
+    </span>
+  </div>
+
+  <div id="editor"></div>
+
+  <textarea id="content" required hidden></textarea>
+
+  <small>
+    Use the toolbar to format Tamil text, headings, Bible verses,
+    lists, and links.
+  </small>
+</div>
 
           <div class="field full">
             <label for="featuredImage">Featured image URL</label>
@@ -267,6 +356,26 @@
     );
 
     const $ = (id) => document.getElementById(id);
+const quillScript = document.createElement("script");
+quillScript.src =
+  "https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js";
+
+document.head.appendChild(quillScript);
+
+await new Promise((resolve, reject) => {
+  quillScript.onload = resolve;
+  quillScript.onerror = () =>
+    reject(new Error("Unable to load the rich-text editor."));
+});
+
+const quill = new Quill("#editor", {
+  theme: "snow",
+  modules: {
+    toolbar: "#toolbar"
+  },
+  placeholder: "இங்கே உங்கள் தமிழ் கட்டுரையை எழுதுங்கள்..."
+});
+    
 
     let editingId = null;
     let currentUser = null;
@@ -317,6 +426,7 @@
     function clearForm() {
       editingId = null;
       $("blogForm").reset();
+      quill.setText("");
       $("slug").dataset.edited = "";
       $("formHeading").textContent = "Add New Blog";
       $("saveButton").textContent = "Save Blog";
@@ -396,7 +506,8 @@
       $("slug").value = data.slug;
       $("slug").dataset.edited = "true";
       $("excerpt").value = data.excerpt || "";
-      $("content").value = data.content;
+    quill.clipboard.dangerouslyPasteHTML(data.content || "");
+$("content").value = data.content || "";
       $("featuredImage").value = data.featured_image || "";
       $("status").value = data.status;
 
@@ -434,15 +545,19 @@
       $("saveButton").disabled = true;
       showMessage("Saving blog...", true);
 
-      const title = $("title").value.trim();
-      const slug = $("slug").value.trim();
-      const content = $("content").value.trim();
+    const title = $("title").value.trim();
+const slug = $("slug").value.trim();
 
-      if (!title || !slug || !content) {
-        showMessage("Please complete all required fields.");
-        $("saveButton").disabled = false;
-        return;
-      }
+const content = quill.getSemanticHTML().trim();
+$("content").value = content;
+
+const plainText = quill.getText().trim();
+
+if (!title || !slug || !plainText) {
+    showMessage("Please enter a title, URL slug, and blog content.");
+    $("saveButton").disabled = false;
+    return;
+}
 
       const payload = {
         title,
