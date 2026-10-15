@@ -1,6 +1,7 @@
-// TJ Broadcast â€” Supabase Blog Connection
+// TJ Broadcast - Supabase Blog Connection
 
-const SUPABASE_URL = "https://zempldbvywmoeltqzsnv.supabase.co";
+const SUPABASE_URL =
+    "https://zempldbvywmoeltqzsnv.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
@@ -18,7 +19,7 @@ async function loadPublishedBlogs() {
     container.replaceChildren();
 
     const loading = document.createElement("p");
-    loading.textContent = "à®•à®Ÿà¯à®Ÿà¯à®°à¯ˆà®•à®³à¯ à®à®±à¯à®±à®ªà¯à®ªà®Ÿà¯à®•à®¿à®©à¯à®±à®©...";
+    loading.textContent = "கட்டுரைகள் ஏற்றப்படுகின்றன...";
     container.appendChild(loading);
 
     try {
@@ -32,9 +33,7 @@ async function loadPublishedBlogs() {
         );
 
         if (!response.ok) {
-            throw new Error(
-                `Supabase returned HTTP ${response.status}`
-            );
+            throw new Error(`Supabase returned HTTP ${response.status}`);
         }
 
         const blogs = await response.json();
@@ -42,7 +41,8 @@ async function loadPublishedBlogs() {
 
         if (blogs.length === 0) {
             const message = document.createElement("p");
-            message.textContent = "à®¤à®±à¯à®ªà¯‹à®¤à¯ à®µà¯†à®³à®¿à®¯à®¿à®Ÿà®ªà¯à®ªà®Ÿà¯à®Ÿ à®•à®Ÿà¯à®Ÿà¯à®°à¯ˆà®•à®³à¯ à®‡à®²à¯à®²à¯ˆ.";
+            message.textContent =
+                "தற்போது வெளியிடப்பட்ட கட்டுரைகள் இல்லை.";
             container.appendChild(message);
             return;
         }
@@ -50,12 +50,12 @@ async function loadPublishedBlogs() {
         blogs.forEach(blog => {
             const link = document.createElement("a");
 
-            // Open each article using its existing slug-based URL.
-           link.href = `article.html?slug=${encodeURIComponent(blog.slug)}`;
+            link.href =
+                `article.html?slug=${encodeURIComponent(blog.slug)}`;
+
+            link.textContent = `📖 ${blog.title}`;
             link.target = "_blank";
             link.rel = "noopener noreferrer";
-
-            link.textContent = `ðŸ“– ${blog.title}`;
 
             container.appendChild(link);
         });
@@ -67,10 +67,10 @@ async function loadPublishedBlogs() {
 
         const message = document.createElement("p");
         message.textContent =
-            "à®•à®Ÿà¯à®Ÿà¯à®°à¯ˆà®•à®³à¯ˆ à®à®±à¯à®± à®®à¯à®Ÿà®¿à®¯à®µà®¿à®²à¯à®²à¯ˆ. à®šà®¿à®±à®¿à®¤à¯ à®¨à¯‡à®°à®®à¯ à®•à®´à®¿à®¤à¯à®¤à¯ à®®à¯à®¯à®±à¯à®šà®¿à®•à¯à®•à®µà¯à®®à¯.";
+            "கட்டுரைகளை ஏற்ற முடியவில்லை. சிறிது நேரம் கழித்து முயற்சிக்கவும்.";
 
         container.appendChild(message);
     }
 }
 
-document.addEventListener("DOMContentLoaded", loadPublishedBlogs);// JavaScript Document
+document.addEventListener("DOMContentLoaded", loadPublishedBlogs);
