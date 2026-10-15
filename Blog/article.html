@@ -9,6 +9,12 @@
     <meta name="description" content="TJ Broadcast வேதாகமக் கட்டுரைகள்">
 
     <link rel="icon" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
     <style>
         * {
@@ -84,11 +90,73 @@
             margin-bottom: 24px;
         }
 
-        #article-content {
-            font-size: 17px;
-            overflow-wrap: anywhere;
-        }
+       #article-content {
+    font-family: "Noto Sans Tamil", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 2;
+    overflow-wrap: anywhere;
+    color: #273044;
+}
 
+#article-content p {
+    margin: 0 0 20px;
+}
+
+#article-content h1,
+#article-content h2,
+#article-content h3 {
+    color: #312e81;
+    line-height: 1.6;
+    margin: 28px 0 14px;
+}
+
+#article-content h1 {
+    font-size: 30px;
+}
+
+#article-content h2 {
+    font-size: 25px;
+}
+
+#article-content h3 {
+    font-size: 21px;
+}
+
+#article-content blockquote {
+    margin: 22px 0;
+    padding: 16px 20px;
+    border-left: 5px solid #6d28d9;
+    background: #f5f3ff;
+    color: #4c1d95;
+    border-radius: 6px;
+}
+
+#article-content ul,
+#article-content ol {
+    padding-left: 30px;
+    margin: 15px 0 22px;
+}
+
+#article-content li {
+    margin-bottom: 8px;
+}
+
+#article-content a {
+    color: #6d28d9;
+    text-decoration: underline;
+    overflow-wrap: anywhere;
+}
+
+#article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+#article-content pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
         #article-content p {
             margin: 0 0 18px;
         }
@@ -165,7 +233,7 @@
 <footer>
     © <span id="year"></span> TJ Broadcast. All rights reserved.
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 <script type="module">
     const SUPABASE_URL =
         "https://zempldbvywmoeltqzsnv.supabase.co";
@@ -241,29 +309,27 @@
             document.getElementById("article-excerpt").textContent =
                 blog.excerpt || "";
 
-            // Treat stored content as plain text, not executable HTML.
-            const contentElement =
-                document.getElementById("article-content");
+       const contentElement =
+    document.getElementById("article-content");
 
-            contentElement.replaceChildren();
+contentElement.replaceChildren();
 
-            (blog.content || "").split(/\r?\n/).forEach(line => {
-                const paragraph = document.createElement("p");
-                paragraph.textContent = line || "\u00A0";
-                contentElement.appendChild(paragraph);
-            });
+if (blog.content) {
+    const cleanHTML = DOMPurify.sanitize(blog.content, {
+        USE_PROFILES: { html: true },
+        FORBID_TAGS: [
+            "script",
+            "style",
+            "iframe",
+            "object",
+            "embed",
+            "form"
+        ],
+        FORBID_ATTR: ["style"]
+    });
 
-            if (blog.created_at) {
-                const date = new Date(blog.created_at);
-
-                document.getElementById("article-date").textContent =
-                    "வெளியிடப்பட்ட தேதி: " +
-                    date.toLocaleDateString("ta-IN", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                    });
-            }
+    contentElement.innerHTML = cleanHTML;
+}
 
             if (blog.featured_image) {
                 const image = document.getElementById("article-image");
