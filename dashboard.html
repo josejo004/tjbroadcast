@@ -259,7 +259,7 @@
       "https://zempldbvywmoeltqzsnv.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
-      "YOUR_SUPABASE_PUBLISHABLE_KEY";
+      "sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
 
     const supabase = createClient(
       SUPABASE_URL,
@@ -482,9 +482,13 @@
       window.location.replace("./index.html");
     });
 
-    if (await requireAdmin()) {
-      await loadBlogs();
-    }
+   
+
+const isAdmin = await requireAdmin();
+
+if (isAdmin) {
+  await loadBlogs();
+}
   </script>
 </body>
 </html>
