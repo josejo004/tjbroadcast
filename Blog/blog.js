@@ -23,18 +23,31 @@ async function loadExistingArticles() {
             }
 
             const html = await response.text();
+
             const doc = new DOMParser().parseFromString(
                 html,
                 "text/html"
             );
 
-            // Extract the actual title from the existing HTML file.
+            // Read the actual title from the HTML file.
+            const heading = doc.querySelector(".hero h1, h1");
+
+            const titleFromHeading = heading
+                ? heading.textContent.replace(/\s+/g, " ").trim()
+                : "";
+
+            const titleFromDocument = doc.querySelector("title")
+                ?.textContent
+                .replace(/\s*\|\s*TJ Broadcast\s*$/i, "")
+                .trim() || "";
+
             const title =
-                doc.querySelector("h1")?.textContent.trim() ||
-                doc.querySelector("title")?.textContent.trim() ||
+                titleFromHeading ||
+                titleFromDocument ||
                 `Blog ${i}`;
 
             const link = document.createElement("a");
+
             link.href = url;
             link.textContent = `📖 ${title}`;
 
