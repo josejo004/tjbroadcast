@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>கட்டுரை | TJ Broadcast</title>
+
+    <meta name="description" content="TJ Broadcast வேதாகமக் கட்டுரைகள்">
+
+    <link rel="icon" href="../favicon.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, "Noto Sans Tamil", sans-serif;
+            background: #f5f6fa;
+            color: #202431;
+            line-height: 1.8;
+        }
+
+        header {
+            background: #111722;
+            color: white;
+            padding: 16px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            color: #f4b942;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        main {
+            width: min(900px, 92%);
+            margin: 35px auto;
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        #article-title {
+            margin: 0 0 12px;
+            font-size: clamp(26px, 5vw, 38px);
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        #article-date {
+            color: #707786;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        #article-image {
+            display: none;
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        #article-excerpt {
+            font-size: 18px;
+            color: #555d6d;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        #article-content {
+            font-size: 17px;
+            overflow-wrap: anywhere;
+        }
+
+        #article-content p {
+            margin: 0 0 18px;
+        }
+
+        .message {
+            text-align: center;
+            padding: 45px 10px;
+        }
+
+        .error {
+            color: #b42318;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 12px;
+            color: #707786;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 14px 4%;
+            }
+
+            .brand {
+                font-size: 17px;
+            }
+
+            main {
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            #article-content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a class="brand" href="../index.html">🔥 TJ BROADCAST</a>
+
+    <a class="back-link" href="blog.html">
+        ← கட்டுரைகளுக்குத் திரும்ப
+    </a>
+</header>
+
+<main>
+    <div id="loading" class="message">
+        கட்டுரை ஏற்றப்படுகிறது...
+    </div>
+
+    <div id="error-message" class="message error" hidden>
+        கட்டுரையை ஏற்ற முடியவில்லை.
+    </div>
+
+    <article id="article" hidden>
+        <h1 id="article-title"></h1>
+
+        <div id="article-date"></div>
+
+        <img id="article-image" alt="கட்டுரையின் படம்">
+
+        <div id="article-excerpt"></div>
+
+        <div id="article-content"></div>
+    </article>
+</main>
+
+<footer>
+    © <span id="year"></span> TJ Broadcast. All rights reserved.
+</footer>
+
+<script type="module">
+    const SUPABASE_URL =
+        "https://zempldbvywmoeltqzsnv.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+        "sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
+
+    const loading = document.getElementById("loading");
+    const errorMessage = document.getElementById("error-message");
+    const article = document.getElementById("article");
+
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+    function showError(message) {
+        loading.hidden = true;
+        article.hidden = true;
+        errorMessage.hidden = false;
+        errorMessage.textContent = message;
+    }
+
+    async function loadArticle() {
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get("slug");
+
+        if (!slug) {
+            showError("கட்டுரைக்கான இணைப்பு சரியாக இல்லை.");
+            return;
+        }
+
+        try {
+            const url = new URL(
+                `${SUPABASE_URL}/rest/v1/blogs`
+            );
+
+            url.searchParams.set(
+                "select",
+                "title,slug,excerpt,content,featured_image,created_at"
+            );
+
+            url.searchParams.set("slug", `eq.${slug}`);
+            url.searchParams.set("status", "eq.published");
+            url.searchParams.set("limit", "1");
+
+            const response = await fetch(url, {
+                headers: {
+                    apikey: SUPABASE_PUBLISHABLE_KEY
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(
+                    `Supabase returned HTTP ${response.status}`
+                );
+            }
+
+            const blogs = await response.json();
+
+            if (!blogs.length) {
+                showError(
+                    "இந்தக் கட்டுரை கிடைக்கவில்லை அல்லது இன்னும் வெளியிடப்படவில்லை."
+                );
+                return;
+            }
+
+            const blog = blogs[0];
+
+            document.title = `${blog.title} | TJ Broadcast`;
+
+            document.getElementById("article-title").textContent =
+                blog.title || "";
+
+            document.getElementById("article-excerpt").textContent =
+                blog.excerpt || "";
+
+            // Treat stored content as plain text, not executable HTML.
+            const contentElement =
+                document.getElementById("article-content");
+
+            contentElement.replaceChildren();
+
+            (blog.content || "").split(/\r?\n/).forEach(line => {
+                const paragraph = document.createElement("p");
+                paragraph.textContent = line || "\u00A0";
+                contentElement.appendChild(paragraph);
+            });
+
+            if (blog.created_at) {
+                const date = new Date(blog.created_at);
+
+                document.getElementById("article-date").textContent =
+                    "வெளியிடப்பட்ட தேதி: " +
+                    date.toLocaleDateString("ta-IN", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                    });
+            }
+
+            if (blog.featured_image) {
+                const image = document.getElementById("article-image");
+
+                image.onload = () => {
+                    image.style.display = "block";
+                };
+
+                image.onerror = () => {
+                    image.style.display = "none";
+                };
+
+                image.src = blog.featured_image;
+            }
+
+            loading.hidden = true;
+            article.hidden = false;
+
+        } catch (error) {
+            console.error("Unable to load article:", error);
+
+            showError(
+                "கட்டுரையை ஏற்ற முடியவில்லை. சிறிது நேரம் கழித்து முயற்சிக்கவும்."
+            );
+        }
+    }
+
+    loadArticle();
+</script>
+
+</body>
+</html>
