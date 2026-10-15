@@ -1,4 +1,4 @@
-// TJ Broadcast - Supabase Blog Connection
+// TJ Broadcast — Existing GitHub Articles + New Supabase Articles
 
 const SUPABASE_URL =
     "https://zempldbvywmoeltqzsnv.supabase.co";
@@ -8,9 +8,26 @@ const SUPABASE_PUBLISHABLE_KEY =
 
 const BLOG_API = `${SUPABASE_URL}/rest/v1/blogs`;
 
-async function loadPublishedBlogs() {
-    const container = document.getElementById("dynamic-blog-list");
+const container = document.getElementById("dynamic-blog-list");
 
+// Existing GitHub articles: display these first.
+const existingArticles = Array.from(
+    { length: 24 },
+    (_, index) => ({
+        title: `Blog ${index + 1}`,
+        url: `blog/blog-${index + 1}.html`
+    })
+);
+
+function addArticle(title, url) {
+    const link = document.createElement("a");
+    link.href = url;
+    link.textContent = `📖 ${title}`;
+
+    container.appendChild(link);
+}
+
+async function loadPublishedBlogs() {
     if (!container) {
         console.error("Blog container #dynamic-blog-list was not found.");
         return;
@@ -18,13 +35,15 @@ async function loadPublishedBlogs() {
 
     container.replaceChildren();
 
-    const loading = document.createElement("p");
-    loading.textContent = "கட்டுரைகள் ஏற்றப்படுகின்றன...";
-    container.appendChild(loading);
+    // 1. Display the existing GitHub articles first.
+    existingArticles.forEach(blog => {
+        addArticle(blog.title, blog.url);
+    });
 
+    // 2. Append newly published Supabase articles.
     try {
         const response = await fetch(
-            `${BLOG_API}?select=id,title,slug,excerpt,featured_image,created_at&status=eq.published&order=created_at.desc`,
+            `${BLOG_API}?select=id,title,slug,status&status=eq.published&order=created_at.desc`,
             {
                 headers: {
                     apikey: SUPABASE_PUBLISHABLE_KEY
@@ -37,39 +56,21 @@ async function loadPublishedBlogs() {
         }
 
         const blogs = await response.json();
-        container.replaceChildren();
 
-        if (blogs.length === 0) {
-            const message = document.createElement("p");
-            message.textContent =
-                "தற்போது வெளியிடப்பட்ட கட்டுரைகள் இல்லை.";
-            container.appendChild(message);
-            return;
+        if (blogs.length > 0) {
+            const heading = document.createElement("h2");
+            heading.textContent = "புதிய கட்டுரைகள்";
+            container.appendChild(heading);
+
+            blogs.forEach(blog => {
+                addArticle(
+                    blog.title,
+                    `article.html?slug=${encodeURIComponent(blog.slug)}`
+                );
+            });
         }
-
-        blogs.forEach(blog => {
-            const link = document.createElement("a");
-
-            link.href =
-                `article.html?slug=${encodeURIComponent(blog.slug)}`;
-
-            link.textContent = `📖 ${blog.title}`;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-
-            container.appendChild(link);
-        });
-
     } catch (error) {
-        console.error("Unable to load blogs:", error);
-
-        container.replaceChildren();
-
-        const message = document.createElement("p");
-        message.textContent =
-            "கட்டுரைகளை ஏற்ற முடியவில்லை. சிறிது நேரம் கழித்து முயற்சிக்கவும்.";
-
-        container.appendChild(message);
+        console.error("Unable to load new Supabase blogs:", error);
     }
 }
 
