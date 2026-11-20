@@ -1,364 +1,1146 @@
+```html
 <!DOCTYPE html>
 <html lang="ta">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>கட்டுரை | TJ Broadcast</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="TJ Broadcast வேதாகமக் கட்டுரைகள்">
+<title>கட்டுரை | TJ Broadcast</title>
 
-    <link rel="icon" href="../favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="description" content="TJ Broadcast வேதாகமக் கட்டுரைகள்">
+
+<meta name="theme-color" content="#17152d">
+
+<link rel="icon" href="../favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
->
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        body {
-            margin: 0;
-            font-family: Arial, "Noto Sans Tamil", sans-serif;
-            background: #f5f6fa;
-            color: #202431;
-            line-height: 1.8;
-        }
+<style>
 
-        header {
-            background: #111722;
-            color: white;
-            padding: 16px 6%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .brand {
-            color: #f4b942;
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 20px;
-        }
-
-        .back-link {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        main {
-            width: min(900px, 92%);
-            margin: 35px auto;
-            background: white;
-            padding: 32px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        #article-title {
-            margin: 0 0 12px;
-            font-size: clamp(26px, 5vw, 38px);
-            line-height: 1.5;
-            overflow-wrap: anywhere;
-        }
-
-        #article-date {
-            color: #707786;
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-
-        #article-image {
-            display: none;
-            width: 100%;
-            max-height: 480px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 25px;
-        }
-
-        #article-excerpt {
-            font-size: 18px;
-            color: #555d6d;
-            font-weight: 500;
-            margin-bottom: 24px;
-        }
-
-       #article-content {
-    font-family: "Noto Sans Tamil", Arial, sans-serif;
-    font-size: 17px;
-    line-height: 2;
-    overflow-wrap: anywhere;
-    color: #273044;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-#article-content p {
-    margin: 0 0 20px;
+body{
+    font-family:'Inter','Noto Sans Tamil',sans-serif;
+    background:#f7f7fb;
+    color:#25243a;
+    line-height:1.8;
+}
+
+/* HEADER */
+
+header{
+    background:#17152d;
+    padding:15px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 20px #0002;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:white;
+    text-decoration:none;
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:.5px;
+}
+
+.logo{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#a78bfa,#6d28d9);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    color:white;
+    font-weight:800;
+}
+
+/* If you have a real logo, replace the logo div with an img */
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:27px;
+}
+
+nav a{
+    color:#ddd9f5;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#c4a7ff;
+}
+
+/* MAIN */
+
+main{
+    width:min(1000px,92%);
+    margin:45px auto;
+}
+
+/* ARTICLE */
+
+.article-card{
+    background:white;
+    padding:45px;
+    border-radius:18px;
+    box-shadow:0 5px 30px #17152d0b;
+}
+
+.article-category{
+    display:inline-block;
+    background:#f1ebff;
+    color:#6d28d9;
+    padding:6px 15px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+#article-title{
+    font-family:'Noto Sans Tamil','Inter',sans-serif;
+    font-size:clamp(27px,4vw,39px);
+    line-height:1.65;
+    color:#17152d;
+    margin-bottom:15px;
+    overflow-wrap:anywhere;
+}
+
+.article-meta{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    color:#85869a;
+    font-size:13px;
+    margin-bottom:25px;
+}
+
+#article-image{
+    display:none;
+    width:100%;
+    max-height:480px;
+    object-fit:cover;
+    border-radius:13px;
+    margin-bottom:28px;
+}
+
+#article-excerpt{
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:18px;
+    font-weight:600;
+    color:#55536c;
+    background:#f8f6ff;
+    border-left:4px solid #7c3aed;
+    padding:18px 22px;
+    margin-bottom:30px;
+    border-radius:5px;
+}
+
+/* ARTICLE CONTENT */
+
+#article-content{
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:17px;
+    line-height:2.15;
+    color:#333248;
+    overflow-wrap:anywhere;
+}
+
+#article-content p{
+    margin-bottom:20px;
 }
 
 #article-content h1,
 #article-content h2,
-#article-content h3 {
-    color: #312e81;
-    line-height: 1.6;
-    margin: 28px 0 14px;
+#article-content h3{
+    color:#312e81;
+    line-height:1.7;
+    margin:30px 0 15px;
 }
 
-#article-content h1 {
-    font-size: 30px;
+#article-content h1{font-size:30px;}
+#article-content h2{font-size:25px;}
+#article-content h3{font-size:21px;}
+
+#article-content blockquote{
+    padding:18px;
+    background:#f5f3ff;
+    border-left:5px solid #7c3aed;
+    border-radius:7px;
+    margin:25px 0;
+    color:#4c1d95;
 }
 
-#article-content h2 {
-    font-size: 25px;
-}
-
-#article-content h3 {
-    font-size: 21px;
-}
-
-#article-content blockquote {
-    margin: 22px 0;
-    padding: 16px 20px;
-    border-left: 5px solid #6d28d9;
-    background: #f5f3ff;
-    color: #4c1d95;
-    border-radius: 6px;
+#article-content img{
+    max-width:100%;
+    height:auto;
+    border-radius:10px;
 }
 
 #article-content ul,
-#article-content ol {
-    padding-left: 30px;
-    margin: 15px 0 22px;
+#article-content ol{
+    padding-left:30px;
+    margin:20px 0;
 }
 
-#article-content li {
-    margin-bottom: 8px;
+#article-content li{
+    margin-bottom:10px;
 }
 
-#article-content a {
-    color: #6d28d9;
-    text-decoration: underline;
-    overflow-wrap: anywhere;
+#article-content a{
+    color:#6d28d9;
+    overflow-wrap:anywhere;
 }
 
-#article-content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+/* SHARE SECTION */
+
+.share-section{
+    margin-top:40px;
+    padding:25px;
+    background:#f8f7fc;
+    border-radius:14px;
 }
 
-#article-content pre {
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
+.share-section h3{
+    font-size:18px;
+    margin-bottom:18px;
+    color:#24213f;
 }
-        #article-content p {
-            margin: 0 0 18px;
-        }
 
-        .message {
-            text-align: center;
-            padding: 45px 10px;
-        }
+.share-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
 
-        .error {
-            color: #b42318;
-        }
+.share-btn{
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    color:white;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:inherit;
+}
 
-        footer {
-            text-align: center;
-            padding: 25px 12px;
-            color: #707786;
-            font-size: 14px;
-        }
+.whatsapp{background:#25D366;}
+.facebook{background:#1877F2;}
+.copy{background:#39345d;}
 
-        @media (max-width: 600px) {
-            header {
-                padding: 14px 4%;
-            }
+.share-btn:hover{
+    opacity:.85;
+    transform:translateY(-2px);
+}
 
-            .brand {
-                font-size: 17px;
-            }
+/* COMMENTS */
 
-            main {
-                padding: 20px;
-                margin: 20px auto;
-            }
+.comments-section{
+    margin-top:40px;
+    padding-top:35px;
+    border-top:1px solid #eee;
+}
 
-            #article-content {
-                font-size: 16px;
-            }
-        }
-    </style>
+.comments-section h2{
+    font-size:23px;
+    margin-bottom:10px;
+    color:#25213e;
+}
+
+.comments-intro{
+    color:#77778a;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.comment-form{
+    background:#f8f7fc;
+    padding:25px;
+    border-radius:13px;
+}
+
+.comment-form label{
+    display:block;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:8px;
+    color:#33314c;
+}
+
+.comment-form input,
+.comment-form textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #dedde9;
+    border-radius:8px;
+    margin-bottom:18px;
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:15px;
+    outline:none;
+    background:white;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus{
+    border-color:#8b5cf6;
+}
+
+.comment-form textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.submit-comment{
+    background:#6d28d9;
+    color:white;
+    border:none;
+    padding:13px 25px;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.submit-comment:disabled{
+    opacity:.6;
+    cursor:wait;
+}
+
+#comment-message{
+    margin-top:15px;
+    font-size:13px;
+}
+
+/* COMMENT LIST */
+
+.comment-list{
+    margin-top:30px;
+}
+
+.comment-item{
+    padding:20px 0;
+    border-bottom:1px solid #eee;
+}
+
+.comment-name{
+    font-weight:700;
+    color:#312e81;
+    font-size:15px;
+}
+
+.comment-date{
+    font-size:12px;
+    color:#999;
+    margin:5px 0 10px;
+}
+
+.comment-text{
+    font-family:'Noto Sans Tamil',sans-serif;
+    font-size:15px;
+    line-height:2;
+    white-space:pre-wrap;
+    overflow-wrap:anywhere;
+}
+
+/* LOADING */
+
+.message{
+    text-align:center;
+    padding:70px 10px;
+    color:#777;
+}
+
+.error{
+    color:#b42318;
+}
+
+/* FOOTER */
+
+footer{
+    background:#17152d;
+    color:#aaa6c4;
+    text-align:center;
+    padding:28px 15px;
+    font-size:13px;
+    margin-top:50px;
+}
+
+footer strong{
+    color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    header{
+        flex-direction:column;
+        padding:15px;
+    }
+
+    nav{
+        width:100%;
+        justify-content:center;
+        flex-wrap:wrap;
+        gap:17px;
+    }
+
+    nav a{
+        font-size:12px;
+    }
+
+    main{
+        margin:22px auto;
+    }
+
+    .article-card{
+        padding:22px;
+    }
+
+    #article-content{
+        font-size:16px;
+    }
+
+    .share-buttons{
+        flex-direction:column;
+    }
+
+    .share-btn{
+        justify-content:center;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-    <a class="brand" href="../index.html">🔥 TJ BROADCAST</a>
+<!-- HEADER -->
 
-    <a class="back-link" href="blog.html">
-        ← கட்டுரைகளுக்குத் திரும்ப
-    </a>
+<header>
+
+<a class="brand" href="../index.html">
+
+    <div class="logo">TJ</div>
+
+    <span>TJ BROADCAST</span>
+
+</a>
+
+<nav>
+
+    <a href="../index.html">Home</a>
+
+    <a href="../videos.html">Videos</a>
+
+    <a href="../books.html">Books</a>
+
+    <a href="blog.html">Articles</a>
+
+</nav>
+
 </header>
 
+
+<!-- ARTICLE -->
+
 <main>
-    <div id="loading" class="message">
-        கட்டுரை ஏற்றப்படுகிறது...
+
+<div id="loading" class="message">
+    கட்டுரை ஏற்றப்படுகிறது...
+</div>
+
+<div id="error-message" class="message error" hidden>
+    கட்டுரையை ஏற்ற முடியவில்லை.
+</div>
+
+
+<article id="article" class="article-card" hidden>
+
+    <span class="article-category">வேதாகமக் கட்டுரைகள்</span>
+
+    <h1 id="article-title"></h1>
+
+    <div class="article-meta">
+
+        <span>📅 <span id="article-date"></span></span>
+
+        <span>📖 TJ Broadcast</span>
+
     </div>
 
-    <div id="error-message" class="message error" hidden>
-        கட்டுரையை ஏற்ற முடியவில்லை.
-    </div>
+    <img id="article-image" alt="கட்டுரையின் படம்">
 
-    <article id="article" hidden>
-        <h1 id="article-title"></h1>
+    <div id="article-excerpt"></div>
 
-        <div id="article-date"></div>
+    <div id="article-content"></div>
 
-        <img id="article-image" alt="கட்டுரையின் படம்">
 
-        <div id="article-excerpt"></div>
+    <!-- SHARE -->
 
-        <div id="article-content"></div>
-    </article>
+    <section class="share-section">
+
+        <h3>இந்தக் கட்டுரையைப் பகிரவும்</h3>
+
+        <div class="share-buttons">
+
+            <button class="share-btn whatsapp" id="whatsappShare">
+                🟢 WhatsApp Share
+            </button>
+
+            <button class="share-btn facebook" id="facebookShare">
+                📘 Facebook Share
+            </button>
+
+            <button class="share-btn copy" id="copyLink">
+                🔗 Copy Link
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- COMMENTS -->
+
+    <section class="comments-section">
+
+        <h2>கருத்துகள் (Comments)</h2>
+
+        <p class="comments-intro">
+            இந்தக் கட்டுரை குறித்து உங்கள் கருத்துகளைப் பகிருங்கள்.
+        </p>
+
+        <form class="comment-form" id="commentForm">
+
+            <label for="commentName">உங்கள் பெயர்</label>
+
+            <input
+                type="text"
+                id="commentName"
+                maxlength="80"
+                required
+                placeholder="உங்கள் பெயரை உள்ளிடவும்"
+            >
+
+            <label for="commentText">உங்கள் கருத்து</label>
+
+            <textarea
+                id="commentText"
+                maxlength="3000"
+                required
+                placeholder="உங்கள் கருத்தை எழுதுங்கள்..."
+            ></textarea>
+
+            <!-- Honeypot field to catch simple bots -->
+            <div hidden aria-hidden="true">
+                <label for="website">Website</label>
+                <input id="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <button type="submit" class="submit-comment" id="submitComment">
+                கருத்தைச் சமர்ப்பிக்கவும்
+            </button>
+
+            <p id="comment-message" role="status" aria-live="polite"></p>
+
+        </form>
+
+
+        <div class="comment-list" id="commentList">
+
+            <p>கருத்துகள் ஏற்றப்படுகின்றன...</p>
+
+        </div>
+
+    </section>
+
+</article>
+
 </main>
 
+
+<!-- FOOTER -->
+
 <footer>
-    © <span id="year"></span> TJ Broadcast. All rights reserved.
+
+    © <span id="year"></span>
+    <strong>TJ Broadcast</strong>.
+    All Rights Reserved.
+
 </footer>
+
+
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+
 <script type="module">
-    const SUPABASE_URL =
-        "https://zempldbvywmoeltqzsnv.supabase.co";
 
-    const SUPABASE_PUBLISHABLE_KEY =
-        "sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
+const SUPABASE_URL =
+"https://zempldbvywmoeltqzsnv.supabase.co";
 
-    const loading = document.getElementById("loading");
-    const errorMessage = document.getElementById("error-message");
-    const article = document.getElementById("article");
+const SUPABASE_KEY =
+"sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
 
-    document.getElementById("year").textContent =
-        new Date().getFullYear();
 
-    function showError(message) {
-        loading.hidden = true;
-        article.hidden = true;
-        errorMessage.hidden = false;
-        errorMessage.textContent = message;
-    }
+const API = `${SUPABASE_URL}/rest/v1`;
 
-    async function loadArticle() {
-        const params = new URLSearchParams(window.location.search);
-        const slug = params.get("slug");
+const loading = document.getElementById("loading");
+const article = document.getElementById("article");
+const errorMessage = document.getElementById("error-message");
 
-        if (!slug) {
-            showError("கட்டுரைக்கான இணைப்பு சரியாக இல்லை.");
-            return;
-        }
+const params = new URLSearchParams(window.location.search);
 
-        try {
-            const url = new URL(
-                `${SUPABASE_URL}/rest/v1/blogs`
-            );
+const slug = params.get("slug");
 
-            url.searchParams.set(
-                "select",
-                "title,slug,excerpt,content,featured_image,created_at"
-            );
+let currentBlog = null;
 
-            url.searchParams.set("slug", `eq.${slug}`);
-            url.searchParams.set("status", "eq.published");
-            url.searchParams.set("limit", "1");
 
-            const response = await fetch(url, {
-                headers: {
-                    apikey: SUPABASE_PUBLISHABLE_KEY
-                }
-            });
+/* YEAR */
 
-            if (!response.ok) {
-                throw new Error(
-                    `Supabase returned HTTP ${response.status}`
-                );
-            }
+document.getElementById("year").textContent =
+new Date().getFullYear();
 
-            const blogs = await response.json();
 
-            if (!blogs.length) {
-                showError(
-                    "இந்தக் கட்டுரை கிடைக்கவில்லை அல்லது இன்னும் வெளியிடப்படவில்லை."
-                );
-                return;
-            }
+/* HEADERS */
 
-            const blog = blogs[0];
+const headers = {
+    apikey: SUPABASE_KEY,
+    "Content-Type": "application/json"
+};
 
-            document.title = `${blog.title} | TJ Broadcast`;
 
-            document.getElementById("article-title").textContent =
-                blog.title || "";
+/* ERROR */
 
-            document.getElementById("article-excerpt").textContent =
-                blog.excerpt || "";
+function showError(message){
 
-       const contentElement =
-    document.getElementById("article-content");
+    loading.hidden = true;
+    article.hidden = true;
+    errorMessage.hidden = false;
 
-contentElement.replaceChildren();
+    errorMessage.textContent = message;
 
-if (blog.content) {
-    const cleanHTML = DOMPurify.sanitize(blog.content, {
-        USE_PROFILES: { html: true },
-        FORBID_TAGS: [
-            "script",
-            "style",
-            "iframe",
-            "object",
-            "embed",
-            "form"
-        ],
-        FORBID_ATTR: ["style"]
-    });
-
-    contentElement.innerHTML = cleanHTML;
 }
 
-            if (blog.featured_image) {
-                const image = document.getElementById("article-image");
 
-                image.onload = () => {
-                    image.style.display = "block";
-                };
+/* LOAD ARTICLE */
 
-                image.onerror = () => {
-                    image.style.display = "none";
-                };
+async function loadArticle(){
 
-                image.src = blog.featured_image;
-            }
+    if(!slug){
 
-            loading.hidden = true;
-            article.hidden = false;
+        showError("கட்டுரைக்கான இணைப்பு சரியாக இல்லை.");
 
-        } catch (error) {
-            console.error("Unable to load article:", error);
+        return;
 
-            showError(
-                "கட்டுரையை ஏற்ற முடியவில்லை. சிறிது நேரம் கழித்து முயற்சிக்கவும்."
-            );
-        }
     }
 
-    loadArticle();
+    try{
+
+        const url = new URL(`${API}/blogs`);
+
+        url.searchParams.set(
+            "select",
+            "title,slug,excerpt,content,featured_image,created_at"
+        );
+
+        url.searchParams.set("slug",`eq.${slug}`);
+
+        url.searchParams.set("status","eq.published");
+
+        url.searchParams.set("limit","1");
+
+
+        const response = await fetch(url,{
+
+            headers
+
+        });
+
+
+        if(!response.ok){
+
+            throw new Error("Unable to fetch article");
+
+        }
+
+
+        const blogs = await response.json();
+
+
+        if(!blogs.length){
+
+            showError("இந்தக் கட்டுரை கிடைக்கவில்லை.");
+
+            return;
+
+        }
+
+
+        const blog = blogs[0];
+
+        currentBlog = blog;
+
+
+        /* SEO */
+
+        document.title =
+        `${blog.title} | TJ Broadcast`;
+
+
+        const description =
+        (blog.excerpt || blog.title).slice(0,160);
+
+
+        document.querySelector('meta[name="description"]')
+        .setAttribute("content",description);
+
+
+        const canonicalURL = window.location.href;
+
+
+        function setMeta(property,content){
+
+            let meta = document.querySelector(
+                `meta[property="${property}"]`
+            );
+
+            if(!meta){
+
+                meta = document.createElement("meta");
+
+                meta.setAttribute("property",property);
+
+                document.head.appendChild(meta);
+
+            }
+
+            meta.setAttribute("content",content);
+
+        }
+
+
+        setMeta("og:title",blog.title);
+
+        setMeta("og:description",description);
+
+        setMeta("og:type","article");
+
+        setMeta("og:url",canonicalURL);
+
+        if(blog.featured_image){
+
+            setMeta("og:image",blog.featured_image);
+
+        }
+
+
+        /* CONTENT */
+
+        document.getElementById("article-title").textContent =
+        blog.title || "";
+
+
+        document.getElementById("article-excerpt").textContent =
+        blog.excerpt || "";
+
+
+        const date = blog.created_at
+        ? new Date(blog.created_at).toLocaleDateString("ta-IN",{
+            year:"numeric",
+            month:"long",
+            day:"numeric"
+        })
+        : "";
+
+
+        document.getElementById("article-date").textContent =
+        date;
+
+
+        /* IMAGE */
+
+        const image = document.getElementById("article-image");
+
+        if(blog.featured_image){
+
+            image.onload = () => image.style.display = "block";
+
+            image.onerror = () => image.style.display = "none";
+
+            image.src = blog.featured_image;
+
+        }
+
+
+        /* SANITIZED HTML */
+
+        const cleanHTML = DOMPurify.sanitize(
+            blog.content || "",
+            {
+                USE_PROFILES:{html:true},
+
+                FORBID_TAGS:[
+                    "script",
+                    "style",
+                    "iframe",
+                    "object",
+                    "embed",
+                    "form"
+                ],
+
+                FORBID_ATTR:["style"]
+            }
+        );
+
+
+        document.getElementById("article-content")
+        .innerHTML = cleanHTML;
+
+
+        loading.hidden = true;
+
+        article.hidden = false;
+
+
+        /* SHARING */
+
+        setupSharing(blog);
+
+
+        /* COMMENTS */
+
+        await loadComments(blog.slug);
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        showError(
+            "கட்டுரையை ஏற்ற முடியவில்லை. சிறிது நேரம் கழித்து முயற்சிக்கவும்."
+        );
+
+    }
+
+}
+
+
+/* WHATSAPP / FACEBOOK / COPY */
+
+function setupSharing(blog){
+
+    const shareURL = window.location.href;
+
+    const message =
+    `📖 ${blog.title}\n\nTJ Broadcast\n\nRead More: ${shareURL}`;
+
+
+    document.getElementById("whatsappShare")
+    .onclick = () => {
+
+        window.open(
+            `https://wa.me/?text=${encodeURIComponent(message)}`,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+    };
+
+
+    document.getElementById("facebookShare")
+    .onclick = () => {
+
+        window.open(
+            `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}`,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+    };
+
+
+    document.getElementById("copyLink")
+    .onclick = async () => {
+
+        try{
+
+            await navigator.clipboard.writeText(shareURL);
+
+            document.getElementById("copyLink")
+            .textContent = "✓ Link Copied!";
+
+        }
+
+        catch(error){
+
+            alert("இந்த இணைப்பை copy செய்ய முடியவில்லை.");
+
+        }
+
+    };
+
+}
+
+
+/* LOAD APPROVED COMMENTS */
+
+async function loadComments(blogSlug){
+
+    const list = document.getElementById("commentList");
+
+    list.replaceChildren();
+
+
+    try{
+
+        const url = new URL(`${API}/blog_comments`);
+
+        url.searchParams.set(
+            "select",
+            "id,name,comment,created_at"
+        );
+
+        url.searchParams.set(
+            "blog_slug",
+            `eq.${blogSlug}`
+        );
+
+        url.searchParams.set(
+            "is_approved",
+            "eq.true"
+        );
+
+        url.searchParams.set(
+            "order",
+            "created_at.desc"
+        );
+
+
+        const response = await fetch(url,{headers});
+
+
+        if(!response.ok){
+
+            throw new Error("Unable to load comments");
+
+        }
+
+
+        const comments = await response.json();
+
+
+        if(!comments.length){
+
+            const empty = document.createElement("p");
+
+            empty.textContent = "இன்னும் கருத்துகள் இல்லை. முதல் கருத்தைப் பகிருங்கள்!";
+
+            list.appendChild(empty);
+
+            return;
+
+        }
+
+
+        comments.forEach(comment => {
+
+            const item = document.createElement("div");
+
+            item.className = "comment-item";
+
+
+            const name = document.createElement("div");
+
+            name.className = "comment-name";
+
+            name.textContent = comment.name;
+
+
+            const date = document.createElement("div");
+
+            date.className = "comment-date";
+
+            date.textContent = new Date(
+                comment.created_at
+            ).toLocaleDateString("ta-IN");
+
+
+            const text = document.createElement("div");
+
+            text.className = "comment-text";
+
+            text.textContent = comment.comment;
+
+
+            item.append(name,date,text);
+
+            list.appendChild(item);
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        list.textContent =
+        "கருத்துகளை இப்போது ஏற்ற முடியவில்லை.";
+
+    }
+
+}
+
+
+/* SUBMIT COMMENT */
+
+document.getElementById("commentForm")
+.addEventListener("submit",async(event)=>{
+
+    event.preventDefault();
+
+
+    const name = document.getElementById("commentName")
+    .value.trim();
+
+    const comment = document.getElementById("commentText")
+    .value.trim();
+
+    const honeypot = document.getElementById("website").value;
+
+    const button = document.getElementById("submitComment");
+
+    const message = document.getElementById("comment-message");
+
+
+    if(honeypot){
+
+        return;
+
+    }
+
+
+    if(!name || !comment || !currentBlog){
+
+        message.textContent = "தயவுசெய்து அனைத்து விவரங்களையும் நிரப்பவும்.";
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent = "சமர்ப்பிக்கப்படுகிறது...";
+
+
+    message.textContent = "";
+
+
+    try{
+
+        const response = await fetch(
+            `${API}/blog_comments`,
+            {
+                method:"POST",
+
+                headers:{
+                    ...headers,
+                    Prefer:"return=minimal"
+                },
+
+                body:JSON.stringify({
+
+                    blog_slug:currentBlog.slug,
+
+                    name:name,
+
+                    comment:comment
+
+                })
+
+            }
+        );
+
+
+        if(!response.ok){
+
+            throw new Error("Comment submission failed");
+
+        }
+
+
+        message.style.color = "#15803d";
+
+        message.textContent =
+        "நன்றி! உங்கள் கருத்து நிர்வாகியின் ஒப்புதலுக்குப் பிறகு வெளியிடப்படும்.";
+
+
+        document.getElementById("commentForm").reset();
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        message.style.color = "#b42318";
+
+        message.textContent =
+        "கருத்தைச் சமர்ப்பிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.";
+
+    }
+
+    finally{
+
+        button.disabled = false;
+
+        button.textContent = "கருத்தைச் சமர்ப்பிக்கவும்";
+
+    }
+
+});
+
+
+/* START */
+
+loadArticle();
+
 </script>
 
 </body>
 </html>
+```
