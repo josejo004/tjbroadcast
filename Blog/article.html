@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="ta">
 
@@ -58,7 +57,6 @@ header{
     text-decoration:none;
     font-size:21px;
     font-weight:800;
-    letter-spacing:.5px;
 }
 
 .logo{
@@ -74,12 +72,10 @@ header{
     font-weight:800;
 }
 
-/* If you have a real logo, replace the logo div with an img */
-
 nav{
     display:flex;
     align-items:center;
-    gap:27px;
+    gap:25px;
 }
 
 nav a{
@@ -87,7 +83,6 @@ nav a{
     text-decoration:none;
     font-size:14px;
     font-weight:600;
-    transition:.3s;
 }
 
 nav a:hover{
@@ -122,7 +117,7 @@ main{
 }
 
 #article-title{
-    font-family:'Noto Sans Tamil','Inter',sans-serif;
+    font-family:'Noto Sans Tamil',sans-serif;
     font-size:clamp(27px,4vw,39px);
     line-height:1.65;
     color:#17152d;
@@ -131,9 +126,6 @@ main{
 }
 
 .article-meta{
-    display:flex;
-    align-items:center;
-    gap:15px;
     color:#85869a;
     font-size:13px;
     margin-bottom:25px;
@@ -228,7 +220,6 @@ main{
 .share-section h3{
     font-size:18px;
     margin-bottom:18px;
-    color:#24213f;
 }
 
 .share-buttons{
@@ -292,7 +283,6 @@ main{
     font-size:14px;
     font-weight:700;
     margin-bottom:8px;
-    color:#33314c;
 }
 
 .comment-form input,
@@ -370,8 +360,6 @@ main{
     overflow-wrap:anywhere;
 }
 
-/* LOADING */
-
 .message{
     text-align:center;
     padding:70px 10px;
@@ -440,6 +428,7 @@ footer strong{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -471,7 +460,7 @@ footer strong{
 </header>
 
 
-<!-- ARTICLE -->
+<!-- MAIN ARTICLE -->
 
 <main>
 
@@ -486,15 +475,17 @@ footer strong{
 
 <article id="article" class="article-card" hidden>
 
-    <span class="article-category">வேதாகமக் கட்டுரைகள்</span>
+    <span class="article-category">
+        வேதாகமக் கட்டுரைகள்
+    </span>
 
     <h1 id="article-title"></h1>
 
     <div class="article-meta">
 
-        <span>📅 <span id="article-date"></span></span>
+        📅 <span id="article-date"></span>
 
-        <span>📖 TJ Broadcast</span>
+        &nbsp; | &nbsp; 📖 TJ Broadcast
 
     </div>
 
@@ -561,13 +552,22 @@ footer strong{
                 placeholder="உங்கள் கருத்தை எழுதுங்கள்..."
             ></textarea>
 
-            <!-- Honeypot field to catch simple bots -->
-            <div hidden aria-hidden="true">
-                <label for="website">Website</label>
-                <input id="website" type="text" tabindex="-1" autocomplete="off">
+            <!-- Spam protection honeypot -->
+
+            <div hidden>
+                <input
+                    id="website"
+                    type="text"
+                    tabindex="-1"
+                    autocomplete="off"
+                >
             </div>
 
-            <button type="submit" class="submit-comment" id="submitComment">
+            <button
+                type="submit"
+                class="submit-comment"
+                id="submitComment"
+            >
                 கருத்தைச் சமர்ப்பிக்கவும்
             </button>
 
@@ -594,7 +594,9 @@ footer strong{
 <footer>
 
     © <span id="year"></span>
+
     <strong>TJ Broadcast</strong>.
+
     All Rights Reserved.
 
 </footer>
@@ -605,17 +607,23 @@ footer strong{
 
 <script type="module">
 
+/* SUPABASE CONFIGURATION */
+
 const SUPABASE_URL =
 "https://zempldbvywmoeltqzsnv.supabase.co";
 
 const SUPABASE_KEY =
 "sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
 
-
 const API = `${SUPABASE_URL}/rest/v1`;
 
+
+/* ELEMENTS */
+
 const loading = document.getElementById("loading");
+
 const article = document.getElementById("article");
+
 const errorMessage = document.getElementById("error-message");
 
 const params = new URLSearchParams(window.location.search);
@@ -644,10 +652,35 @@ const headers = {
 function showError(message){
 
     loading.hidden = true;
+
     article.hidden = true;
+
     errorMessage.hidden = false;
 
     errorMessage.textContent = message;
+
+}
+
+
+/* SEO META */
+
+function setMeta(property,content){
+
+    let meta = document.querySelector(
+        `meta[property="${property}"]`
+    );
+
+    if(!meta){
+
+        meta = document.createElement("meta");
+
+        meta.setAttribute("property",property);
+
+        document.head.appendChild(meta);
+
+    }
+
+    meta.setAttribute("content",content);
 
 }
 
@@ -670,7 +703,7 @@ async function loadArticle(){
 
         url.searchParams.set(
             "select",
-            "title,slug,excerpt,content,featured_image,created_at"
+            "id,title,slug,excerpt,content,featured_image,created_at"
         );
 
         url.searchParams.set("slug",`eq.${slug}`);
@@ -681,9 +714,7 @@ async function loadArticle(){
 
 
         const response = await fetch(url,{
-
             headers
-
         });
 
 
@@ -713,41 +744,14 @@ async function loadArticle(){
 
         /* SEO */
 
-        document.title =
-        `${blog.title} | TJ Broadcast`;
-
+        document.title = `${blog.title} | TJ Broadcast`;
 
         const description =
         (blog.excerpt || blog.title).slice(0,160);
 
-
-        document.querySelector('meta[name="description"]')
-        .setAttribute("content",description);
-
-
-        const canonicalURL = window.location.href;
-
-
-        function setMeta(property,content){
-
-            let meta = document.querySelector(
-                `meta[property="${property}"]`
-            );
-
-            if(!meta){
-
-                meta = document.createElement("meta");
-
-                meta.setAttribute("property",property);
-
-                document.head.appendChild(meta);
-
-            }
-
-            meta.setAttribute("content",content);
-
-        }
-
+        document.querySelector(
+            'meta[name="description"]'
+        ).setAttribute("content",description);
 
         setMeta("og:title",blog.title);
 
@@ -755,7 +759,7 @@ async function loadArticle(){
 
         setMeta("og:type","article");
 
-        setMeta("og:url",canonicalURL);
+        setMeta("og:url",window.location.href);
 
         if(blog.featured_image){
 
@@ -764,7 +768,7 @@ async function loadArticle(){
         }
 
 
-        /* CONTENT */
+        /* ARTICLE DETAILS */
 
         document.getElementById("article-title").textContent =
         blog.title || "";
@@ -787,22 +791,26 @@ async function loadArticle(){
         date;
 
 
-        /* IMAGE */
+        /* FEATURED IMAGE */
 
         const image = document.getElementById("article-image");
 
         if(blog.featured_image){
 
-            image.onload = () => image.style.display = "block";
+            image.onload = () => {
+                image.style.display = "block";
+            };
 
-            image.onerror = () => image.style.display = "none";
+            image.onerror = () => {
+                image.style.display = "none";
+            };
 
             image.src = blog.featured_image;
 
         }
 
 
-        /* SANITIZED HTML */
+        /* ARTICLE CONTENT */
 
         const cleanHTML = DOMPurify.sanitize(
             blog.content || "",
@@ -832,14 +840,14 @@ async function loadArticle(){
         article.hidden = false;
 
 
-        /* SHARING */
+        /* SHARE */
 
         setupSharing(blog);
 
 
-        /* COMMENTS */
+        /* LOAD COMMENTS */
 
-        await loadComments(blog.slug);
+        await loadComments(blog.id);
 
 
     }
@@ -916,7 +924,7 @@ function setupSharing(blog){
 
 /* LOAD APPROVED COMMENTS */
 
-async function loadComments(blogSlug){
+async function loadComments(blogId){
 
     const list = document.getElementById("commentList");
 
@@ -933,8 +941,8 @@ async function loadComments(blogSlug){
         );
 
         url.searchParams.set(
-            "blog_slug",
-            `eq.${blogSlug}`
+            "blog_id",
+            `eq.${blogId}`
         );
 
         url.searchParams.set(
@@ -965,7 +973,8 @@ async function loadComments(blogSlug){
 
             const empty = document.createElement("p");
 
-            empty.textContent = "இன்னும் கருத்துகள் இல்லை. முதல் கருத்தைப் பகிருங்கள்!";
+            empty.textContent =
+            "இன்னும் கருத்துகள் இல்லை. முதல் கருத்தைப் பகிருங்கள்!";
 
             list.appendChild(empty);
 
@@ -1054,7 +1063,8 @@ document.getElementById("commentForm")
 
     if(!name || !comment || !currentBlog){
 
-        message.textContent = "தயவுசெய்து அனைத்து விவரங்களையும் நிரப்பவும்.";
+        message.textContent =
+        "தயவுசெய்து அனைத்து விவரங்களையும் நிரப்பவும்.";
 
         return;
 
@@ -1064,7 +1074,6 @@ document.getElementById("commentForm")
     button.disabled = true;
 
     button.textContent = "சமர்ப்பிக்கப்படுகிறது...";
-
 
     message.textContent = "";
 
@@ -1083,11 +1092,13 @@ document.getElementById("commentForm")
 
                 body:JSON.stringify({
 
-                    blog_slug:currentBlog.slug,
+                    blog_id:currentBlog.id,
 
                     name:name,
 
-                    comment:comment
+                    comment:comment,
+
+                    is_approved:false
 
                 })
 
@@ -1097,7 +1108,11 @@ document.getElementById("commentForm")
 
         if(!response.ok){
 
-            throw new Error("Comment submission failed");
+            const errorData = await response.json();
+
+            throw new Error(
+                errorData.message || "Comment submission failed"
+            );
 
         }
 
@@ -1143,4 +1158,3 @@ loadArticle();
 
 </body>
 </html>
-```
