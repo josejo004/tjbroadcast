@@ -1,201 +1,495 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TJ Broadcast | Admin Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<title>TJ Broadcast | Admin Portal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:'Inter',sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#080d1b;
+    padding:20px;
+    color:white;
+    overflow:hidden;
+}
+	body {
+    font-family: 'Inter', 'Noto Sans Tamil', sans-serif;
+}
+
+input,
+button,
+label {
+    font-family: 'Inter', 'Noto Sans Tamil', sans-serif;
+}
+
+/* Background */
+
+.bg-glow{
+    position:fixed;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.25;
+    z-index:-1;
+}
+
+.glow1{
+    background:#743cff;
+    top:-150px;
+    left:-100px;
+}
+
+.glow2{
+    background:#2563eb;
+    bottom:-150px;
+    right:-100px;
+}
+
+/* Login Layout */
+
+.login-container{
+    width:100%;
+    max-width:450px;
+    padding:45px;
+    background:rgba(20,27,48,.92);
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:22px;
+    box-shadow:0 30px 90px rgba(0,0,0,.5);
+    backdrop-filter:blur(20px);
+}
+
+/* Logo */
+	
+	.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+}
+
+.logo-area{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.logo-icon{
+    width:75px;
+    height:75px;
+    margin:0 auto 16px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#8b5cf6,#4f46e5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:800;
+    box-shadow:0 10px 35px #7040ff55;
+    letter-spacing:-3px;
+}
+
+.logo-area h1{
+    font-size:25px;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+.logo-area h1 span{
+    color:#a78bfa;
+}
+
+.logo-area p{
+    margin-top:9px;
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* Heading */
+
+.heading{
+    margin-bottom:28px;
+}
+
+.heading h2{
+    font-size:23px;
+    margin-bottom:8px;
+}
+
+.heading p{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+/* Form */
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:9px;
+    color:#dbeafe;
+}
+
+.input-group{
+    margin-bottom:22px;
+}
+
+.input-box{
+    position:relative;
+}
+
+.input-box input{
+    width:100%;
+    padding:15px;
+    padding-right:48px;
+    border:1px solid #34415e;
+    border-radius:10px;
+    background:#10182b;
+    color:white;
+    font-size:14px;
+    outline:none;
+    transition:.3s;
+}
+
+.input-box input:focus{
+    border-color:#8b5cf6;
+    box-shadow:0 0 0 3px #8b5cf622;
+}
+
+.input-box input::placeholder{
+    color:#64748b;
+}
+
+.toggle-password{
+    position:absolute;
+    right:14px;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:none;
+    color:#94a3b8;
+    cursor:pointer;
+    font-size:12px;
+    width:auto;
+    margin:0;
+    padding:5px;
+}
+
+/* Button */
+
+.login-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#8b5cf6,#5b21b6);
+    color:white;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    margin-top:5px;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px #7c3aed55;
+}
+
+.login-btn:disabled{
+    opacity:.6;
+    cursor:wait;
+    transform:none;
+}
+
+/* Message */
+
+#message{
+    margin-top:18px;
+    font-size:13px;
+    line-height:1.5;
+    text-align:center;
+    overflow-wrap:anywhere;
+}
+
+/* Footer */
+
+.footer{
+    margin-top:30px;
+    padding-top:20px;
+    border-top:1px solid #29344b;
+    text-align:center;
+}
+
+.footer a{
+    color:#a78bfa;
+    text-decoration:none;
+    font-size:13px;
+}
+
+.footer p{
+    margin-top:16px;
+    color:#64748b;
+    font-size:11px;
+}
+
+/* Mobile */
+
+@media(max-width:480px){
+
+    .login-container{
+        padding:30px 23px;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #111827, #312e81, #6d28d9);
+    .logo-area h1{
+        font-size:22px;
     }
 
-    .login-card {
-      width: 100%;
-      max-width: 420px;
-      padding: 36px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px #0004;
-    }
-
-    .logo {
-      text-align: center;
-      color: #5b21b6;
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #64748b;
-      margin-bottom: 28px;
-    }
-
-    label {
-      display: block;
-      margin: 16px 0 8px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #1f2937;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #cbd5e1;
-      border-radius: 9px;
-      font-size: 16px;
-    }
-
-    input:focus {
-      outline: 2px solid #8b5cf6;
-      border-color: transparent;
-    }
-
-    button {
-      width: 100%;
-      margin-top: 22px;
-      padding: 14px;
-      background: #6d28d9;
-      color: white;
-      border: none;
-      border-radius: 9px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      opacity: 0.65;
-      cursor: wait;
-    }
-
-    #message {
-      margin-top: 16px;
-      font-size: 14px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 22px;
-      color: #6d28d9;
-      text-decoration: none;
-    }
-
-    @media (max-width: 480px) {
-      .login-card {
-        padding: 26px 22px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
-  <main class="login-card">
-    <div class="logo">TJ BROADCAST</div>
-    <p class="subtitle">Administrator Login</p>
+
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
+
+<main class="login-container">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+    <img src="../images/tj-logo.png" alt="TJ Broadcast Logo">
+</div>
+
+        <h1>TJ <span>BROADCAST</span></h1>
+
+        <p>சத்தியத்தை அறிவீர்கள், சத்தியம் உங்களை விடுதலையாக்கும் (யோவான் 8:32)</p>
+
+    </div>
+
+
+    <div class="heading">
+
+        <h2>Welcome Back!</h2>
+
+        <p>Sign in to access your administration panel.</p>
+
+    </div>
+
 
     <form id="loginForm">
-      <label for="email">Email address</label>
-      <input
-        id="email"
-        type="email"
-        autocomplete="username"
-        placeholder="Enter your email"
-        required
-      >
 
-      <label for="password">Password</label>
-      <input
-        id="password"
-        type="password"
-        autocomplete="current-password"
-        placeholder="Enter your password"
-        required
-      >
+        <div class="input-group">
 
-      <button id="loginButton" type="submit">Log In</button>
-      <p id="message" role="status" aria-live="polite"></p>
+            <label for="email">Email Address</label>
+
+            <div class="input-box">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="admin@tjbroadcast.com"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label for="password">Password</label>
+
+            <div class="input-box">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="toggle-password"
+                    id="togglePassword"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                >SHOW</button>
+
+            </div>
+
+        </div>
+
+
+        <button type="submit" class="login-btn" id="loginButton">
+
+            Sign In to Dashboard →
+
+        </button>
+
+        <p id="message" role="status" aria-live="polite"></p>
+
     </form>
 
-    <a class="back-link" href="../index.html">
-      ← Back to TJ Broadcast
-    </a>
-  </main>
 
-  <script type="module">
-    import { createClient } from
-      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+    <div class="footer">
 
-    const SUPABASE_URL =
-      "https://zempldbvywmoeltqzsnv.supabase.co";
+        <a href="../index.html">← Back to TJ Broadcast Website</a>
 
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
+        <p>© 2026 TJ Broadcast. All Rights Reserved.</p>
 
-    const supabase = createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
+    </div>
+
+</main>
+
+
+<script type="module">
+
+import { createClient } from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+const SUPABASE_URL =
+"https://zempldbvywmoeltqzsnv.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_0C4xq5K4vaAYxYKYr6OT-g_5QG5tqVP";
+
+
+const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
+
+
+const form = document.getElementById("loginForm");
+
+const button = document.getElementById("loginButton");
+
+const message = document.getElementById("message");
+
+const password = document.getElementById("password");
+
+const togglePassword = document.getElementById("togglePassword");
+
+
+/* Show / Hide Password */
+
+togglePassword.addEventListener("click",()=>{
+
+    const isPassword = password.type === "password";
+
+    password.type = isPassword ? "text" : "password";
+
+    togglePassword.textContent = isPassword ? "HIDE" : "SHOW";
+
+    togglePassword.setAttribute("aria-pressed", String(isPassword));
+
+    togglePassword.setAttribute(
+        "aria-label",
+        isPassword ? "Hide password" : "Show password"
     );
 
-    const form = document.getElementById("loginForm");
-    const button = document.getElementById("loginButton");
-    const message = document.getElementById("message");
+});
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
 
-      button.disabled = true;
-      message.textContent = "Checking your login...";
-      message.style.color = "#475569";
+/* Login */
 
-      try {
-        const { data, error } =
-          await supabase.auth.signInWithPassword({
-            email: document.getElementById("email").value.trim(),
-            password: document.getElementById("password").value
-          });
+form.addEventListener("submit",async(event)=>{
 
-        if (error) throw error;
+    event.preventDefault();
+
+    button.disabled = true;
+
+    button.textContent = "Authenticating...";
+
+    message.textContent = "Please wait...";
+
+    message.style.color = "#a78bfa";
+
+
+    try{
+
+        const {data,error} =
+        await supabase.auth.signInWithPassword({
+
+            email:document.getElementById("email").value.trim(),
+
+            password:password.value
+
+        });
+
+
+        if(error) throw error;
+
 
         const role = data.user?.app_metadata?.role;
 
-        if (role !== "admin") {
-          await supabase.auth.signOut();
-          throw new Error(
-            "This account does not have administrator access. " +
-            "Please check your admin role configuration."
-          );
+
+        if(role !== "admin"){
+
+            await supabase.auth.signOut();
+
+            throw new Error(
+                "Access denied. Administrator permission required."
+            );
+
         }
 
-        message.textContent = "Login successful. Opening dashboard...";
-        message.style.color = "#15803d";
-window.location.href = "dashboard.html";
-      } catch (error) {
-        message.textContent = error.message ||
-          "Login failed. Please try again.";
-        message.style.color = "#b91c1c";
-      } finally {
+
+        message.textContent = "Login successful! Redirecting...";
+
+        message.style.color = "#4ade80";
+
+
+        window.location.href = "dashboard.html";
+
+
+    }
+
+    catch(error){
+
+        message.textContent =
+        error.message || "Login failed. Please try again.";
+
+        message.style.color = "#f87171";
+
+    }
+
+    finally{
+
         button.disabled = false;
-      }
-    });
-  </script>
+
+        button.textContent = "Sign In to Dashboard →";
+
+    }
+
+});
+
+</script>
+
 </body>
 </html>
+```
